@@ -1,0 +1,7 @@
+- automatische Erstellung via .bat console 
+=> erstellung des styles und eingeben des Textes
+
+=> Website Layout designen => responsive erstellen
+
+// to put on website
+- https://www.basicthinking.de/blog/2021/10/28/portfolio-website-erstellen/

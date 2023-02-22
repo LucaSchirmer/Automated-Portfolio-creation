@@ -1,0 +1,15 @@
+:root{
+ font-size: 16px;
+
+ 
+ --mainColor: rgba(20, 20, 20, 1);
+ --secondaryColor: rgba(27, 82, 121, 0.659);
+ --accentColor: rgba(28, 28, 155, 0.658);
+ --backgroundColor: rgba(255, 255, 255,1);
+}
+
+*{
+ padding: 0;
+ margin: 0;
+} 
+
