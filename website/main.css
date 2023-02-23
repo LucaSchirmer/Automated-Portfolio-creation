@@ -1,15 +1,54 @@
 :root{
  font-size: 16px;
-
+ font-weight: 400;
  
  --mainColor: rgba(20, 20, 20, 1);
  --secondaryColor: rgba(27, 82, 121, 0.659);
  --accentColor: rgba(28, 28, 155, 0.658);
  --backgroundColor: rgba(255, 255, 255,1);
+
+ --fontColor: rgba(255, 255, 255,1);
 }
 
 *{
  padding: 0;
  margin: 0;
+
+ scroll-behavior: smooth;
 } 
+
+
+/* Navbar-Style */
+ul{
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.topHeader{
+    width: 100%;
+    height: 8vh;
+
+    background-color: var(--secondaryColor);
+    color: var(--fontColor);
+}
+
+.topNav{
+    display: flex;
+    flex-direction: row;
+}
+
+.LogoContainer{
+    width: 30%;
+    height: 8vh;
+}
+
+.navList{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 70%;
+    height: 8vh;
+}
 
