@@ -1,20 +1,25 @@
 :root{
- font-size: 16px;
- font-weight: 400;
- 
- --mainColor: rgba(20, 20, 20, 1);
- --secondaryColor: rgba(27, 82, 121, 0.659);
- --accentColor: rgba(28, 28, 155, 0.658);
- --backgroundColor: rgba(255, 255, 255,1);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
 
- --fontColor: rgba(255, 255, 255,1);
+    --mainColor: rgba(20, 20, 20, 1);
+    --secondaryColor: rgba(27, 82, 121, 0.659);
+    --accentColor: rgba(28, 28, 155, 0.658);
+    --backgroundColor: rgba(255, 255, 255,1);
+
+    --fontColor: rgba(255, 255, 255,1);
+
+    --fontFamily: 'Lato', sans-serif;
 }
 
 *{
- padding: 0;
- margin: 0;
+    padding: 0;
+    margin: 0;
 
- scroll-behavior: smooth;
+    scroll-behavior: smooth;
+
+    font-family: var(--fontFamily);
 } 
 
 
@@ -52,3 +57,52 @@ ul{
     height: 8vh;
 }
 
+.ListItem{
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+
+/* About article */
+
+.articleAbout{
+    min-height: 92vh;
+
+    display: grid;
+    grid-template-areas: 
+    "a b"
+    "a c";
+
+    text-align: center;
+}
+
+.aboutFoto{
+    grid-area: a;
+    width: 45vw;
+}
+
+.aboutName{
+    grid-area: b;
+    height: 15vh;
+    width: 100%;
+
+    padding-top: 2vh;
+
+    color: var(--secondaryColor);
+    font-size: 5vh;
+    font-weight: 600;
+}
+
+.aboutText{
+    height: 77vh;
+    width: 50vw;
+    grid-area: c;
+
+    line-height: 2;
+}
+
+/* Portfolio Article */
+
+.articlePortfolio{
+    min-height: 92vh;
+}

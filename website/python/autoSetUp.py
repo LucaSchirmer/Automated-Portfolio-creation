@@ -7,8 +7,8 @@ class website:
         self.contact = contact
         self.mainColor = mainColor
         self.secondaryColor = secondaryColor
-        self.contact = contact
-        self.contact = contact
+        self.accentColor = accentColor
+        self.backgroundColor = backgroundColor
 
 
 class projects: 
