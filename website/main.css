@@ -8,6 +8,9 @@
     --accentColor: rgba(28, 28, 155, 0.658);
     --backgroundColor: rgba(255, 255, 255,1);
 
+    /* Has to be edited induvidually each time */
+    --complementaryColor: rgba(249, 248, 113, 1);
+
     --fontColor: rgba(255, 255, 255,1);
 
     --fontFamily: 'Lato', sans-serif;
@@ -24,6 +27,12 @@
 
 
 /* Navbar-Style */
+
+a{
+    text-decoration: none;
+    color: var(--fontColor)
+}
+
 ul{
     text-decoration: none;
     list-style-type: none;
@@ -122,4 +131,29 @@ ul{
     height: 65vh;
 
     background-color: var(--secondaryColor);
+
+    display: grid; 
+    justify-content: space-evenly;
+
+    border-radius: 3%;
+}
+
+.headPicture{
+    aspect-ratio: 4/3;
+    object-fit: contain;
+}
+
+.bannerArticle{
+    padding-inline: 2%;
+    line-height: 1.25;
+
+    text-align: justify;
+}
+
+.bannerHeadline{
+    color: var(--complementaryColor);
+}
+
+.bannerText{
+    color: var(--fontColor)
 }
