@@ -4,8 +4,8 @@
     line-height: 1.5;
 
     --mainColor: rgba(20, 20, 20, 1);
-    --secondaryColor: rgba(27, 82, 121, 0.659);
-    --accentColor: rgba(28, 28, 155, 0.658);
+    --secondaryColor: rgb(33, 110, 211);
+    --accentColor: rgb(28, 28, 155);
     --backgroundColor: rgba(255, 255, 255,1);
 
     /* Has to be edited induvidually each time */
@@ -44,6 +44,8 @@ ul{
 
     background-color: var(--secondaryColor);
     color: var(--fontColor);
+
+    position: fixed;
 }
 
 .topNav{
@@ -76,6 +78,7 @@ ul{
 
 .articleAbout{
     min-height: 92vh;
+    padding-top: 8vh;
 
     display: grid;
     grid-template-areas: 
@@ -113,29 +116,32 @@ ul{
 /* Portfolio Article */
 
 .articlePortfolio{
-    min-height: 92vh;
+   display: grid; 
 
-    padding: 0 5vw 0 5vw ;
+   grid-template-columns:  1fr 1fr 1fr;
+   grid-template-rows: auto;
 
-    display: grid; 
+   justify-content: space-around;
 
-    grid-template-columns:  1fr 1fr 1fr;
-    grid-template-rows: 1fr;
+   background-color: var(--secondaryColor);    
 
-    gap: 5%;
-
-    justify-content: space-around;
+   column-gap: 5%;
+   padding: 10vh 5vw 10vh 5vw;
 }
 
 .bannerPortfolio{
     height: 65vh;
 
-    background-color: var(--secondaryColor);
+    background-color: var(--backgroundColor);
 
     display: grid; 
+    grid-template-rows: 40vh, 25vh;
     justify-content: space-evenly;
 
     border-radius: 3%;
+
+    padding: 2%;
+    margin-bottom: 10vh;
 }
 
 .headPicture{
@@ -151,9 +157,10 @@ ul{
 }
 
 .bannerHeadline{
-    color: var(--complementaryColor);
+    color: var(--accentColor);
+    font-weight: 800;
 }
 
 .bannerText{
-    color: var(--fontColor)
+    color: var(--mainColor)
 }
