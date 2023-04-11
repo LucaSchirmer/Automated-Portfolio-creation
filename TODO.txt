@@ -8,5 +8,8 @@
 
 - adding Intersection Observer
 
+- meta Data: author; description; keywords
+- website-icon????
+
 
 // perhaps expand on french as well 
