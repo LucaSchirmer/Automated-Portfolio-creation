@@ -103,6 +103,36 @@ while(bool == "Y" or bool == "y"):
     if(_boollinkedin):
         _linklinkedin =  input("Enter the link for your social media\n")
         socialMediaDict['linkedin'] = _linklinkedin
+    
+    _boolpinterest = input("Press Y to add pinterest toy our social media\n")
+    if(_boolpinterest):
+        _linkpinterest =  input("Enter the link for your social media\n")
+        socialMediaDict['pinterest'] = _linkpinterest
+        
+    _booltwitter = input("Press Y to add twitter toy our social media\n")
+    if(_booltwitter):
+        _linktwitter =  input("Enter the link for your social media\n")
+        socialMediaDict['twitter'] = _linktwitter
+        
+    boolwhatsapp = input("Press Y to add whatsapp toy our social media\n")
+    if(boolwhatsapp):
+        _linkwhatsapp =  input("Enter the link for your social media\n")
+        socialMediaDict['whatsapp'] = _linkwhatsapp
+        
+    boolyoutube= input("Press Y to add youtube toy our social media\n")
+    if(boolyoutube):
+        _linkyoutube =  input("Enter the link for your social media\n")
+        socialMediaDict['youtube'] = _linkyoutube
+        
+    boolinstagramm= input("Press Y to add instagramm toy our social media\n")
+    if(boolinstagramm):
+        _linkinstagramm =  input("Enter the link for your social media\n")
+        socialMediaDict['instagramm'] = _linkinstagramm
+        
+    boolgithub = input("Press Y to add github toy our social media\n")
+    if(boolgithub):
+        _linkgithub =  input("Enter the link for your social media\n")
+        socialMediaDict['github'] = _linkgithub
    
    
 with open("data.json", "w") as dataJson:
