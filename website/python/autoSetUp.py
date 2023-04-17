@@ -138,5 +138,6 @@ while(bool == "Y" or bool == "y"):
 with open("data.json", "w") as dataJson:
     dataJson.write(protoWebsite.toJSON())
     dataJson.write(json.dumps(projectArr, default=lambda o: o.__dict__, indent=4))
+    dataJson.write(json.dumps(socialMediaDict, default=lambda o: o.__dict__, indent=4))
 
 input('')
