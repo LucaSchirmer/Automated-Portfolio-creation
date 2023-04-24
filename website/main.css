@@ -164,3 +164,10 @@ ul{
 .bannerText{
     color: var(--mainColor)
 }
+
+
+/* Services Article */
+
+.articleServices{
+    min-height: 50vh;
+}
