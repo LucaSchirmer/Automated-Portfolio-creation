@@ -138,8 +138,7 @@ if(boolgithub != "N" and boolgithub != "n"):
     _linkgithub =  input("Enter the link for your social media\n")
     socialMediaDict['github'] = _linkgithub
 
-jsonObject = [protoWebsite.toJSON(),json.dumps(projectArr),json.dumps(socialMediaDict)
-]   
+jsonObject = [protoWebsite.toJSON(), json.dumps(projectArr), json.dumps(socialMediaDict)]   
    
 with open("data.json", "w") as dataJson:
    dataJson.write(json.dumps(jsonObject)),
