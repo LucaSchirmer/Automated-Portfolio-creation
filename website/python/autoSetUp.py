@@ -10,9 +10,6 @@ class website:
         self.secondaryColor = secondaryColor
         self.accentColor = accentColor
         self.backgroundColor = backgroundColor
-        
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__, indent=4)
 
 
 class project: 
@@ -21,9 +18,6 @@ class project:
         self.text = text
         self.foto = foto
         
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__, indent=4)
-
         # for arg in args:
         #     self.arr.append[arg]
             
@@ -71,7 +65,7 @@ projectArr = {}
 
 
 def testForN(bool):
-    if (bool != "Y" or bool != "y"):
+    if (bool != "Y" and bool != "y"):
         bool = input("Press Y to add Projects\n\n")
     elif(bool == "N" or bool == "n"):
         bool = "N"
@@ -89,7 +83,7 @@ while(bool == "Y" or bool == "y"):
     _projectText = input("Add a text for your project\n")
     _fotoUrl = input("Add a photoURL for your project\n")
     listItemProject = project(_project ,_projectText, _fotoUrl)
-    projectArr[i] = listItemProject.toJSON()
+    projectArr[i] = listItemProject
     i += 1
     bool = input("Press Y to add Projects\n\n")
     testForN(bool)
@@ -102,45 +96,48 @@ if(_boolFacebook  != "N" and _boolFacebook != "n"):
     _linkFacebook =  input("Enter the link for your social media\n")
     socialMediaDict['facebook'] = _linkFacebook
     
-_boollinkedin = input("Press Y to add linkedin toy our social media\n")
+_boollinkedin = input("Press Y to add linkedin to your social media\n")
 if(_boollinkedin != "N" and _boollinkedin != "n"):
     _linklinkedin =  input("Enter the link for your social media\n")
     socialMediaDict['linkedin'] = _linklinkedin
 
-_boolpinterest = input("Press Y to add pinterest toy our social media\n")
+_boolpinterest = input("Press Y to add pinterest to your social media\n")
 if(_boolpinterest  != "N" and _boolpinterest != "n"):
     _linkpinterest =  input("Enter the link for your social media\n")
     socialMediaDict['pinterest'] = _linkpinterest
     
-_booltwitter = input("Press Y to add twitter toy our social media\n")
+_booltwitter = input("Press Y to add twitter to your social media\n")
 if(_booltwitter != "N" and _booltwitter != "n"):
     _linktwitter =  input("Enter the link for your social media\n")
     socialMediaDict['twitter'] = _linktwitter
     
-boolwhatsapp = input("Press Y to add whatsapp toy our social media\n")
+boolwhatsapp = input("Press Y to add whatsapp to your social media\n")
 if(boolwhatsapp != "N" and boolwhatsapp != "n"):
     _linkwhatsapp =  input("Enter the link for your social media\n")
     socialMediaDict['whatsapp'] = _linkwhatsapp
     
-boolyoutube= input("Press Y to add youtube toy our social media\n")
+boolyoutube= input("Press Y to add youtube to your social media\n")
 if(boolyoutube  != "N" and boolyoutube != "n"):
     _linkyoutube =  input("Enter the link for your social media\n")
     socialMediaDict['youtube'] = _linkyoutube
     
-boolinstagramm= input("Press Y to add instagramm toy our social media\n")
+boolinstagramm= input("Press Y to add instagramm to your social media\n")
 if(boolinstagramm  != "N" and boolinstagramm != "n"):
     _linkinstagramm =  input("Enter the link for your social media\n")
     socialMediaDict['instagramm'] = _linkinstagramm
     
-boolgithub = input("Press Y to add github toy our social media\n")
+boolgithub = input("Press Y to add github to your social media\n")
 if(boolgithub != "N" and boolgithub != "n"):
     print
     _linkgithub =  input("Enter the link for your social media\n")
     socialMediaDict['github'] = _linkgithub
 
-jsonObject = [protoWebsite.toJSON(), json.dumps(projectArr), json.dumps(socialMediaDict)]   
    
-with open("data.json", "w") as dataJson:
-   dataJson.write(json.dumps(jsonObject)),
+with open("data.json", "w", encoding='utf-8') as dataJson:
+    json.dump([protoWebsite, projectArr, socialMediaDict], dataJson, default=lambda o: o.__dict__, indent=4, ensure_ascii=False)
 
+
+
+
+   
 print("finished")
