@@ -91,6 +91,11 @@ while(bool == "Y" or bool == "y"):
 
 socialMediaDict = dict()
 
+_boolEmail = input("Press Y to add an Email\n")
+if(_boolEmail  != "N" and _boolEmail!= "n"):
+    _linkEmail=  input("Enter your Email\n")
+    socialMediaDict['email'] = _linkEmail
+    
 _boolFacebook = input("Press Y to add facebook to your social media\n")
 if(_boolFacebook  != "N" and _boolFacebook != "n"):
     _linkFacebook =  input("Enter the link for your social media\n")
