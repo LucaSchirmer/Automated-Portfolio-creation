@@ -1,6 +1,5 @@
-import os
 import json
-import codecs
+
 
 class website:
     def __init__(self, title, aboutText, mainColor, secondaryColor, accentColor, backgroundColor) -> None:
@@ -20,6 +19,12 @@ class project:
         
         # for arg in args:
         #     self.arr.append[arg]
+        
+class services: 
+    def __init__(self, title, text) -> None:
+        self.title = title
+        self.text = text
+
             
 # class contact:  
 #     def __init__(self, facebook, linkedin, pinterest, twitter, whatsapp, youtube, instagramm, github) -> None:
@@ -27,6 +32,7 @@ class project:
 #         self.linkedin = linkedin
 #         self.pinterest = pinterest
 #         self.twitter = twitter
+
 #         self.whatsapp = whatsapp
 #         self.youtube = youtube
 #         self.instagramm = instagramm
@@ -62,17 +68,18 @@ print("**************** Add Projects to your Website ****************\n")
 
 
 projectArr = {}
+servicesArr = {}
 
 
-def testForN(bool):
+def testForN(bool, name):
     if (bool != "Y" and bool != "y"):
-        bool = input("Press Y to add Projects\n\n")
+        bool = input("Press Y to add" +  str(name) + "\n\n")
     elif(bool == "N" or bool == "n"):
         bool = "N"
     elif(bool == "Y" or bool == "y"):
         bool = "Y"
     else:
-        testForN(bool)         
+        testForN(bool, name)         
 
 
 
@@ -86,7 +93,19 @@ while(bool == "Y" or bool == "y"):
     projectArr[i] = listItemProject
     i += 1
     bool = input("Press Y to add Projects\n\n")
-    testForN(bool)
+    testForN(bool, "Projects")
+    
+    
+bool = "Y"
+i = 0
+while(bool == "Y" or bool == "y"):
+    _service = input("Add a title for your service\n")
+    _serviceText = input("Add a text for your service\n")
+    listItemService = services(_service ,_serviceText)
+    servicesArr[i] = listItemService
+    i += 1
+    bool = input("Press Y to add Services\n\n")
+    testForN(bool, "Services")
 
 
 socialMediaDict = dict()
@@ -115,7 +134,8 @@ _booltwitter = input("Press Y to add twitter to your social media\n")
 if(_booltwitter != "N" and _booltwitter != "n"):
     _linktwitter =  input("Enter the link for your social media\n")
     socialMediaDict['twitter'] = _linktwitter
-    
+
+#phone number    
 boolwhatsapp = input("Press Y to add whatsapp to your social media\n")
 if(boolwhatsapp != "N" and boolwhatsapp != "n"):
     _linkwhatsapp =  input("Enter the link for your social media\n")
@@ -139,7 +159,7 @@ if(boolgithub != "N" and boolgithub != "n"):
 
    
 with open("data.json", "w", encoding='utf-8') as dataJson:
-    json.dump([protoWebsite, projectArr, socialMediaDict], dataJson, default=lambda o: o.__dict__, indent=4, ensure_ascii=False)
+    json.dump([protoWebsite, projectArr, servicesArr, socialMediaDict], dataJson, default=lambda o: o.__dict__, indent=4, ensure_ascii=False)
 
 
 
