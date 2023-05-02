@@ -73,7 +73,7 @@ servicesArr = {}
 
 def testForN(bool, name):
     if (bool != "Y" and bool != "y"):
-        bool = input("Press Y to add" +  str(name) + "\n\n")
+        bool = input("Press Y to add " +  str(name) + "\n\n")
     elif(bool == "N" or bool == "n"):
         bool = "N"
     elif(bool == "Y" or bool == "y"):
