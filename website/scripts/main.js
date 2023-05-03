@@ -25,4 +25,3 @@ bannerPortfolios.forEach(portfolio => {
         window.location.href =  `${newUrl[0]}portfolio.html`; 
     });
 });
-

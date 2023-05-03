@@ -2,13 +2,14 @@ import json
 
 
 class website:
-    def __init__(self, title, aboutText, mainColor, secondaryColor, accentColor, backgroundColor) -> None:
+    def __init__(self, title, aboutText, mainColor, secondaryColor, accentColor, backgroundColor, metaDescription) -> None:
         self.title = title
         self.aboutText = aboutText
         self.mainColor = mainColor
         self.secondaryColor = secondaryColor
         self.accentColor = accentColor
         self.backgroundColor = backgroundColor
+        self.metaDescription = metaDescription
 
 
 class project: 
@@ -59,6 +60,9 @@ secondaryColor = input('\nEnter the secondary color\n')
 accentColor = input('\nEnter the accent color\n')
 
 backgroundColor = input('\nEnter the background color\n')
+
+
+backgroundColor = input('\nEnter the meta description\n')
 
 
 protoWebsite = website(title, aboutText, mainColor, secondaryColor, accentColor, backgroundColor)
