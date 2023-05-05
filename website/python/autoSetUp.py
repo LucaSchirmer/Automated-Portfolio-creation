@@ -25,6 +25,11 @@ class services:
     def __init__(self, title, text) -> None:
         self.title = title
         self.text = text
+        
+class clients: 
+    def __init__(self, name, foto) -> None:
+        self.name = name
+        self.foto = foto
 
             
 # class contact:  
@@ -61,11 +66,10 @@ accentColor = input('\nEnter the accent color\n')
 
 backgroundColor = input('\nEnter the background color\n')
 
+metaDescription= input('\nEnter the meta description\n')
 
-backgroundColor = input('\nEnter the meta description\n')
 
-
-protoWebsite = website(title, aboutText, mainColor, secondaryColor, accentColor, backgroundColor)
+protoWebsite = website(title, aboutText, mainColor, secondaryColor, accentColor, backgroundColor, metaDescription)
 
 print("\n\n")
 print("**************** Add Projects to your Website ****************\n")
@@ -73,6 +77,7 @@ print("**************** Add Projects to your Website ****************\n")
 
 projectArr = {}
 servicesArr = {}
+clientsArr = {}
 
 
 def testForN(bool, name):
@@ -93,22 +98,37 @@ while(bool == "Y" or bool == "y"):
     _project = input("Add a title for your project\n")
     _projectText = input("Add a text for your project\n")
     _fotoUrl = input("Add a photoURL for your project\n")
-    listItemProject = project(_project ,_projectText, _fotoUrl)
+    listItemProject = project(_project, _projectText, _fotoUrl)
     projectArr[i] = listItemProject
     i += 1
     bool = input("Press Y to add Projects\n\n")
     testForN(bool, "Projects")
-    
+ 
+print("\n\n")    
     
 bool = "Y"
 i = 0
 while(bool == "Y" or bool == "y"):
     _service = input("Add a title for your service\n")
     _serviceText = input("Add a text for your service\n")
-    listItemService = services(_service ,_serviceText)
+    listItemService = services(_service, _serviceText)
     servicesArr[i] = listItemService
     i += 1
     bool = input("Press Y to add Services\n\n")
+    testForN(bool, "Services") 
+
+print("\n\n")
+
+
+bool = input("Press Y to add a client\n\n")
+i = 0
+while(bool == "Y" or bool == "y"):
+    _client= input("Add the name for your client\n")
+    _clientFoto = input("Add a photoURL for your client\n")
+    listItemClient = clients(_client, _clientFoto)
+    clientsArr[i] = listItemClient
+    i += 1
+    bool = input("Press Y to add a client\n\n")
     testForN(bool, "Services")
 
 
@@ -163,7 +183,7 @@ if(boolgithub != "N" and boolgithub != "n"):
 
    
 with open("data.json", "w", encoding='utf-8') as dataJson:
-    json.dump([protoWebsite, projectArr, servicesArr, socialMediaDict], dataJson, default=lambda o: o.__dict__, indent=4, ensure_ascii=False)
+    json.dump([protoWebsite, projectArr, servicesArr, clientsArr, socialMediaDict], dataJson, default=lambda o: o.__dict__, indent=4, ensure_ascii=False)
 
 
 
