@@ -2,8 +2,10 @@ import json
 
 
 class website:
-    def __init__(self, title, aboutText, mainColor, secondaryColor, accentColor, backgroundColor, metaDescription) -> None:
+    def __init__(self, title, aboutText, email, phoneNumber, mainColor, secondaryColor, accentColor, backgroundColor, metaDescription) -> None:
         self.title = title
+        self.email = email
+        self.phoneNumber = phoneNumber
         self.aboutText = aboutText
         self.mainColor = mainColor
         self.secondaryColor = secondaryColor
@@ -58,6 +60,10 @@ title = input('\nEnter the title\n')
 
 aboutText = input('\nEnter the about text\n')
 
+email = input('\nEnter the your email\n')
+
+phoneNumber = input('\nEnter the number of your phone\n')
+
 mainColor = input('\nEnter the main color\n')
 
 secondaryColor = input('\nEnter the secondary color\n')
@@ -69,7 +75,7 @@ backgroundColor = input('\nEnter the background color\n')
 metaDescription= input('\nEnter the meta description\n')
 
 
-protoWebsite = website(title, aboutText, mainColor, secondaryColor, accentColor, backgroundColor, metaDescription)
+protoWebsite = website(title, aboutText, email, phoneNumber, mainColor, secondaryColor, accentColor, backgroundColor, metaDescription)
 
 print("\n\n")
 print("**************** Add Projects to your Website ****************\n")
@@ -134,10 +140,7 @@ while(bool == "Y" or bool == "y"):
 
 socialMediaDict = dict()
 
-_boolEmail = input("Press Y to add an Email\n")
-if(_boolEmail  != "N" and _boolEmail!= "n"):
-    _linkEmail=  input("Enter your Email\n")
-    socialMediaDict['email'] = _linkEmail
+
     
 _boolFacebook = input("Press Y to add facebook to your social media\n")
 if(_boolFacebook  != "N" and _boolFacebook != "n"):
@@ -158,12 +161,6 @@ _booltwitter = input("Press Y to add twitter to your social media\n")
 if(_booltwitter != "N" and _booltwitter != "n"):
     _linktwitter =  input("Enter the link for your social media\n")
     socialMediaDict['twitter'] = _linktwitter
-
-#phone number    
-boolwhatsapp = input("Press Y to add whatsapp to your social media\n")
-if(boolwhatsapp != "N" and boolwhatsapp != "n"):
-    _linkwhatsapp =  input("Enter the link for your social media\n")
-    socialMediaDict['whatsapp'] = _linkwhatsapp
     
 boolyoutube= input("Press Y to add youtube to your social media\n")
 if(boolyoutube  != "N" and boolyoutube != "n"):

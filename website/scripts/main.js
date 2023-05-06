@@ -10,7 +10,12 @@ async function getData(){
     
     addMetaDescription(response[0].metaDescription);
 
-    console.log(response)
+        
+    for (const [key, value] of Object.entries(response[4])) {
+        addContact(key, value);
+    }
+    
+    console.log(response);
 }
 
 getData();
@@ -38,22 +43,26 @@ function addMetaDescription(desc){
 /**
  * 
  * @param {title => means name of the brand as String} title 
- * @param {content regarding the contact connection e.g. link to website} content 
+ * @param {content regarding the contact connection e.g. link to website} link 
  */
-function addContact(title, content){
+function addContact(title, link){
     const articleContact = document.querySelector(".articleContact");
     
     const contactDiv = document.createElement("div");
-    const contentP = document.createElement("p");
+    const contactIMG = document.createElement("img");
+    const contactSpan = document.createElement("span");
 
     contactDiv.classList.add("contact");
-    contentP.classList.add("contactContent");+
+    contactIMG.classList.add("contactIMG");
+    contactSpan.classList.add("contactSpan");
 
     contactDiv.setAttribute("id", title);
 
-    contentP.innerText = content; 
+    contactIMG.src = link; 
+    contactSpan.innerHTML = title; 
 
     articleContact.appendChild(contactDiv);
-    contactDiv.appendChild(contentP);
+    contactDiv.appendChild(contactIMG);
+    contactDiv.appendChild(contactSpan);
 }
 
