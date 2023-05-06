@@ -2,6 +2,8 @@
     {
         "title": "test Title ",
         "aboutText": "When i grew up i saw number as the world they were supposed to save me every time that why i wanna produce stickers with them on it ",
+        "email": "numbverprint@gmail.com",
+        "phoneNumber": "+49 174 8580",
         "mainColor": "#fff",
         "secondaryColor": "#222",
         "accentColor": "#aa2211",
@@ -41,7 +43,7 @@
         }
     },
     {
-        "email": "numbverprint@gmail.com",
+        
         "facebook": "facebook/mySite.de",
         "linkedin": "linkedin/mdfmdf",
         "pinterest": "pinterrest.com "

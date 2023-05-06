@@ -41,28 +41,27 @@ function addMetaDescription(desc){
 
 
 /**
- * 
  * @param {title => means name of the brand as String} title 
- * @param {content regarding the contact connection e.g. link to website} link 
+ * @param {link regarding the contact connection} link 
  */
+
 function addContact(title, link){
     const articleContact = document.querySelector(".articleContact");
     
+    const htmlString = 
+    `
+        <a href="${link}">
+            <img class="contactIMG" src="${title.jpg}" alt="title"> 
+        </a>
+        <span class="contactSpan"> ${title} </span>
+    `;
+
     const contactDiv = document.createElement("div");
-    const contactIMG = document.createElement("img");
-    const contactSpan = document.createElement("span");
 
     contactDiv.classList.add("contact");
-    contactIMG.classList.add("contactIMG");
-    contactSpan.classList.add("contactSpan");
-
     contactDiv.setAttribute("id", title);
-
-    contactIMG.src = link; 
-    contactSpan.innerHTML = title; 
+    contactDiv.innerHTML = htmlString;
 
     articleContact.appendChild(contactDiv);
-    contactDiv.appendChild(contactIMG);
-    contactDiv.appendChild(contactSpan);
 }
 

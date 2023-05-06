@@ -171,3 +171,17 @@ ul{
 .articleServices{
     min-height: 50vh;
 }
+
+/* article Contact*/
+
+.articleContact{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    background-color: rgb(25, 22, 22);
+}
+
+.contactSpan{
+    color: white
+}
