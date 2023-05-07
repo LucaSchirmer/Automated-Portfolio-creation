@@ -185,3 +185,17 @@ ul{
 .contactSpan{
     color: white
 }
+
+.contact{
+    width: 33%; 
+    height: 10vh; 
+
+    display: flex; 
+    flex-direction: column;
+}
+
+.contact a{
+    height: 7.5vh;
+    object-fit: contain;
+    aspect-ratio: 4/3;
+}

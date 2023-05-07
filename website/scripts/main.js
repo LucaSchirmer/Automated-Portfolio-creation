@@ -50,7 +50,7 @@ function addContact(title, link){
     
     const htmlString = 
     `
-        <a href="${link}">
+        <a class="contactAnker" href="${link}">
             <img class="contactIMG" src="${title.jpg}" alt="title"> 
         </a>
         <span class="contactSpan"> ${title} </span>
