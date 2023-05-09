@@ -182,20 +182,30 @@ ul{
     background-color: rgb(25, 22, 22);
 }
 
-.contactSpan{
-    color: white
-}
-
 .contact{
     width: 33%; 
-    height: 10vh; 
+    height: 14vh; 
 
     display: flex; 
     flex-direction: column;
 }
 
+.contactSpan{
+    color: white;
+    margin: 1%;
+    margin-top: 2vh;
+}
+
 .contact a{
     height: 7.5vh;
+}
+
+.contactIMG{
+    height: 100%;
+    padding: 1%;
+
+    mix-blend-mode: multiply;
+    filter: contrast(1);
     object-fit: contain;
     aspect-ratio: 4/3;
 }
