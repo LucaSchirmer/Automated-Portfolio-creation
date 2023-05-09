@@ -204,8 +204,6 @@ ul{
     height: 100%;
     padding: 1%;
 
-    mix-blend-mode: multiply;
-    filter: contrast(1);
     object-fit: contain;
     aspect-ratio: 4/3;
 }
