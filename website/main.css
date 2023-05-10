@@ -135,13 +135,24 @@ ul{
     background-color: var(--backgroundColor);
 
     display: grid; 
-    grid-template-rows: 40vh, 25vh;
+    grid-template-rows: 40vh 25vh;
     justify-content: space-evenly;
 
     border-radius: 3%;
 
     padding: 2%;
     margin-bottom: 10vh;
+}
+
+.subBannerPortfolio{
+    height: 100vh;
+
+    background-color: var(--backgroundColor);
+
+    display: grid; 
+    grid-template-rows: 50vh 35vh;
+
+    padding: 20vh;
 }
 
 .headPicture{
@@ -172,12 +183,33 @@ ul{
     min-height: 50vh;
 }
 
+.articleServices .service:nth-child(2){
+    background-color: var(--secondaryColor);
+    color: #fff;
+}
+
+.service{
+    padding: 20vh;
+    height: 30vh;
+    text-align: center;
+}
+
+.serviceHeadline{
+    font-size: 3rem;
+}
+
+.serviceText{
+    font-size: 1.5rem;
+}
+
 /* article Contact*/
 
 .articleContact{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+
+    padding: 10vh;
 
     background-color: rgb(25, 22, 22);
 }
@@ -194,10 +226,13 @@ ul{
     color: white;
     margin: 1%;
     margin-top: 2vh;
+
+    text-align: center;
 }
 
 .contact a{
     height: 7.5vh;
+    text-align: center;
 }
 
 .contactIMG{

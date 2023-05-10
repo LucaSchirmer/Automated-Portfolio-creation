@@ -2,11 +2,12 @@ import json
 
 
 class website:
-    def __init__(self, title, aboutText, email, phoneNumber, mainColor, secondaryColor, accentColor, backgroundColor, metaDescription) -> None:
+    def __init__(self, title, aboutText, aboutFoto, email, phoneNumber, mainColor, secondaryColor, accentColor, backgroundColor, metaDescription) -> None:
         self.title = title
         self.email = email
         self.phoneNumber = phoneNumber
         self.aboutText = aboutText
+        self.aboutFoto = aboutFoto
         self.mainColor = mainColor
         self.secondaryColor = secondaryColor
         self.accentColor = accentColor
@@ -60,6 +61,8 @@ title = input('\nEnter the title\n')
 
 aboutText = input('\nEnter the about text\n')
 
+aboutFoto= input('\nEnter the about foto\n')
+
 email = input('\nEnter the your email\n')
 
 phoneNumber = input('\nEnter the number of your phone\n')
@@ -75,7 +78,9 @@ backgroundColor = input('\nEnter the background color\n')
 metaDescription= input('\nEnter the meta description\n')
 
 
-protoWebsite = website(title, aboutText, email, phoneNumber, mainColor, secondaryColor, accentColor, backgroundColor, metaDescription)
+
+
+protoWebsite = website(title, aboutText, aboutFoto, email, phoneNumber, mainColor, secondaryColor, accentColor, backgroundColor, metaDescription)
 
 print("\n\n")
 print("**************** Add Projects to your Website ****************\n")
