@@ -40,6 +40,18 @@ async function getData(){
 
         addServices(serviceArr[0], serviceArr[1], serviceArr[2]);
     }
+    
+    // Adding Clients
+    for(let i in response[2]){
+
+        let clienteArr = [];
+
+        for (const value of Object.values(response[3][i])) {
+            clienteArr.push(value)
+        }
+
+        addClients(clienteArr[0], clienteArr[1], clienteArr[2]);
+    }
 
      // Adding Contacts
     for (const [key, value] of Object.entries(response[4])) {
@@ -180,4 +192,35 @@ function addServices(title, text){
     service.innerHTML = htmlString;
 
     articleServices.appendChild(service);
+}
+
+
+/**
+ * @param {name of the client} name 
+ * @param {fotoUrl of the client} fotoUrl 
+ */
+
+// Perhaps adding a Photo?  
+function addClients(name, fotoUrl){
+    const articleClients = document.querySelector(".articleClients");
+    
+    const htmlString = 
+    `
+        <div class="clientPicture">
+            <img src="${fotoUrl}" alt="${name} Picture">
+        </div>
+        <div class="clientName">
+             <h1 class="clientHeadline">
+            ${name}
+            </h1>
+        </div>
+    `;
+
+    const client = document.createElement("div");
+
+    client.classList.add("client");
+    client.setAttribute("id", name);
+    client.innerHTML = htmlString;
+
+    articleClients.appendChild(client);
 }

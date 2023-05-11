@@ -202,7 +202,22 @@ ul{
     font-size: 1.5rem;
 }
 
-/* article Contact*/
+/* Clients Article*/
+
+.articleClients{
+    display: flex;
+    flex-wrap: wrap;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.client{
+    width: 22%;
+    padding: 10vh;
+    text-align: center;
+}
+
+/* Contact Article*/
 
 .articleContact{
     display: flex;
