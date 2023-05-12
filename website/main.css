@@ -257,3 +257,16 @@ ul{
     object-fit: contain;
     aspect-ratio: 4/3;
 }
+
+
+.mailNphone{
+    display: flex; 
+    flex-flow: row wrap;
+    width: 100%;
+    padding-left: 5vh;
+    padding-right: 5vh;
+    padding-top: 0vh;
+    padding-bottom: 10vh;
+    
+    justify-content: space-evenly;
+}

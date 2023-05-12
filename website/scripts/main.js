@@ -54,6 +54,8 @@ async function getData(){
     }
 
      // Adding Contacts
+    addMailNumberContacts(response[0].email, response[0].phoneNumber);
+
     for (const [key, value] of Object.entries(response[4])) {
         addContact(key, value);
     }
@@ -63,18 +65,6 @@ async function getData(){
 
 getData();
 
-// // create Banner href
-// const bannerPortfolios = document.querySelectorAll(".bannerPortfolio");
-
-// bannerPortfolios.forEach(portfolio => {
-//     portfolio.addEventListener("click", () =>{
-
-//         // Searchparameter has to be added
-//         var url = window.location.href;
-//         let newUrl = url.split("index.html");
-//         window.location.href =  `${newUrl[0]}portfolio.html`; 
-//     });
-// });
 
 
 
@@ -223,4 +213,26 @@ function addClients(name, fotoUrl){
     client.innerHTML = htmlString;
 
     articleClients.appendChild(client);
+}
+
+
+function addMailNumberContacts(email, number){
+    const articleContact = document.querySelector(".articleContact");
+    
+    const htmlString = 
+    `
+        <a class="contactEmail" href="mailto: ${email}">
+            ${email}
+        </a>
+        <a class="contactPhone" href="tel: ${number}">
+            ${number}
+        </a>
+    `;
+
+    const contactDiv = document.createElement("div");
+
+    contactDiv.classList.add("mailNphone");
+    contactDiv.innerHTML = htmlString;
+
+    articleContact.appendChild(contactDiv);
 }
