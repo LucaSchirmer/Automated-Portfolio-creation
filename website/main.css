@@ -46,6 +46,7 @@ ul{
     color: var(--fontColor);
 
     position: fixed;
+    z-index: 1000;
 }
 
 .topNav{
@@ -106,7 +107,7 @@ ul{
 }
 
 .aboutText{
-    height: 77vh;
+    height: 75vh;
     width: 50vw;
     grid-area: c;
 
@@ -183,15 +184,19 @@ ul{
     min-height: 50vh;
 }
 
-.articleServices .service:nth-child(2){
-    background-color: var(--secondaryColor);
-    color: #fff;
-}
-
 .service{
+    transform: translateX(-50%);
+
     padding: 20vh;
     height: 30vh;
     text-align: center;
+}
+
+.articleServices .service:nth-child(2){
+    background-color: var(--secondaryColor);
+    color: #fff;
+
+    transform: translateX(50%);
 }
 
 .serviceHeadline{
@@ -269,4 +274,30 @@ ul{
     padding-bottom: 10vh;
     
     justify-content: space-evenly;
+}
+
+
+
+
+
+
+
+    /*  Animations   */
+
+.fadeIn{
+    opacity: 0;
+}
+
+.left{
+    transform: translateX(-50%);    
+}
+
+.right{
+    transform: translateX(50%);
+}
+
+.appear{
+    transition: all 500ms ease-in;
+    opacity: 1 !important;
+    transform: translateX(0) !important;
 }

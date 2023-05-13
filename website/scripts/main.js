@@ -5,7 +5,7 @@ async function getData(){
     // Url Json file
     let dataJsonUrl = "../data.json";
 
-    const request =  await fetch(dataJsonUrl,);
+    const request =  await fetch(dataJsonUrl);
     const response = await request.json();
     
     addMetaDescription(response[0].metaDescription);
@@ -59,8 +59,10 @@ async function getData(){
     for (const [key, value] of Object.entries(response[4])) {
         addContact(key, value);
     }
-
     console.log(response);
+
+    const faders = document.querySelectorAll(".fadeIn");
+    startObserver(faders);
 }
 
 getData();
@@ -92,6 +94,7 @@ function addContact(title, link){
     const contactDiv = document.createElement("div");
 
     contactDiv.classList.add("contact");
+    contactDiv.classList.add("fadeIn");
     contactDiv.setAttribute("id", title);
     contactDiv.innerHTML = htmlString;
 
@@ -129,6 +132,8 @@ function addProject(title, text, fotoUrl, num){
     const bannerPortfolio = document.createElement("div");
 
     bannerPortfolio.classList.add("bannerPortfolio");
+    bannerPortfolio.classList.add("fadeIn");
+    bannerPortfolio.classList.add("left");
     bannerPortfolio.setAttribute("id", title);
     bannerPortfolio.innerHTML = htmlString;
 
@@ -178,6 +183,7 @@ function addServices(title, text){
     const service = document.createElement("div");
 
     service.classList.add("service");
+    service.classList.add("fadeIn");
     service.setAttribute("id", title);
     service.innerHTML = htmlString;
 
@@ -209,6 +215,9 @@ function addClients(name, fotoUrl){
     const client = document.createElement("div");
 
     client.classList.add("client");
+    client.classList.add("fadeIn");
+    client.classList.add("right");
+    
     client.setAttribute("id", name);
     client.innerHTML = htmlString;
 
@@ -232,6 +241,7 @@ function addMailNumberContacts(email, number){
     const contactDiv = document.createElement("div");
 
     contactDiv.classList.add("mailNphone");
+    contactDiv.classList.add("fadeIn");
     contactDiv.innerHTML = htmlString;
 
     articleContact.appendChild(contactDiv);
