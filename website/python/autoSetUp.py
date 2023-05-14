@@ -25,9 +25,10 @@ class project:
         #     self.arr.append[arg]
         
 class services: 
-    def __init__(self, title, text) -> None:
+    def __init__(self, title, text, fotoUrl) -> None:
         self.title = title
         self.text = text
+        self.fotoUrl = fotoUrl
         
 class clients: 
     def __init__(self, name, foto) -> None:
@@ -122,7 +123,8 @@ i = 0
 while(bool == "Y" or bool == "y"):
     _service = input("Add a title for your service\n")
     _serviceText = input("Add a text for your service\n")
-    listItemService = services(_service, _serviceText)
+    _serviceFotourl = input("Add a Fotourl for your service\n")
+    listItemService = services(_service, _serviceText, _serviceFotourl)
     servicesArr[i] = listItemService
     i += 1
     bool = input("Press Y to add Services\n\n")

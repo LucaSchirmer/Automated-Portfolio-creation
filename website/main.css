@@ -185,18 +185,17 @@ ul{
 }
 
 .service{
-    transform: translateX(-50%);
-
     padding: 20vh;
     height: 30vh;
     text-align: center;
+
+    display: grid; 
+    grid-template-columns: 1fr 2fr;
 }
 
 .articleServices .service:nth-child(2){
     background-color: var(--secondaryColor);
     color: #fff;
-
-    transform: translateX(50%);
 }
 
 .serviceHeadline{

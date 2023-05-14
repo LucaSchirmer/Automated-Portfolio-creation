@@ -26,11 +26,13 @@
     {
         "0": {
             "title": "$10 homebuilt number",
-            "text": "i built any number 1-10 you want from home out of wood for $10"
+            "text": "i built any number 1-10 you want from home out of wood for $10",
+            "fotoURL": "unknown.png"
         },
         "1": {
             "title": "$100 live built number",
-            "text": "i built you live anthing you want for atleast $100"
+            "text": "i built you live anthing you want for atleast $100",
+            "fotoURL": "unknown.png"
         }
     },
     {

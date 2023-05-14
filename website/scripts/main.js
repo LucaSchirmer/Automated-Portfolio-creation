@@ -14,6 +14,11 @@ async function getData(){
     document.querySelector(".aboutText").innerHTML = response[0].aboutText;
     document.querySelector(".aboutFoto").firstChild.src = response[0].aboutFoto;
     document.querySelector(".aboutFoto").firstChild.alt = response[0].aboutFoto;
+
+    document.querySelector(":root").style.setProperty("--mainColor", response[0].mainColor);
+    document.querySelector(":root").style.setProperty("--secondaryColor", response[0].secondaryColor);
+    document.querySelector(":root").style.setProperty("--accentColor", response[0].accentColor);
+    document.querySelector(":root").style.setProperty("--backgroundColor", response[0].backgroundColor);
        
    
 
@@ -164,26 +169,29 @@ function addProject(title, text, fotoUrl, num){
  * @param {text of the Service} text 
  */
 
-// Perhaps adding a Photo?  
-function addServices(title, text){
+function addServices(title, text, fotoUrl){
     const articleServices = document.querySelector(".articleServices");
     
     const htmlString = 
     `
-        <h1 class="serviceHeadline">
-            ${title}
-        </h1>
+        <div class="servicePicture fadeIn left">
+            <img src="${fotoUrl}" alt="PortfolioPicture">
+        </div>
+        <div class="serviceArticle fadeIn right">
+            <h1 class="serviceHeadline">
+                ${title}
+            </h1>
 
-        <!-- Text has to be limited to a certain amout of characters -->
-        <p class="serviceText">
-            ${text}
-        </p>
+            <!-- Text has to be limited to a certain amout of characters -->
+            <p class="serviceText">
+                ${text}
+            </p>
+        </div>
     `;
 
     const service = document.createElement("div");
 
     service.classList.add("service");
-    service.classList.add("fadeIn");
     service.setAttribute("id", title);
     service.innerHTML = htmlString;
 
