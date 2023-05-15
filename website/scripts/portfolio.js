@@ -1,5 +1,5 @@
 // Aquire data
-async function getData(){
+async function getData(projectNum, bool = false){
 
     // Url Json file
     let dataJsonUrl = "../data.json";
@@ -7,16 +7,59 @@ async function getData(){
     const request =  await fetch(dataJsonUrl,);
     const response = await request.json();
 
-    let projectNum = window.location.search.replace("?project=", ""); 
+    var projectNumMax = 0;
+
+    addMetaDescription(response[0].metaDescription);
+    
+
+    document.querySelector(":root").style.setProperty("--mainColor", response[0].mainColor);
+    document.querySelector(":root").style.setProperty("--secondaryColor", response[0].secondaryColor);
+    document.querySelector(":root").style.setProperty("--accentColor", response[0].accentColor);
+    document.querySelector(":root").style.setProperty("--backgroundColor", response[0].backgroundColor);
+
+
+    let setLength = 10000;
+
+    for(let i = 0; i <= setLength; i++){
+         if(!response[1][i]){
+            projectNumMax = i-1; 
+            break;
+         }
+    }
+
 
 
     let projectArr = [];
+    if(projectNum > projectNumMax){
+        projectNum = 0;
+    }
+    
+    if(projectNum < 0){
+        projectNum = projectNumMax;
+    }
+    var url = window.location.href;
+    let arrayUrl = url.split("/");
+
+    arrayUrl[arrayUrl.length-1] = "";
+
+    let newURL = arrayUrl.join("/")
+
+    let param = new URLSearchParams();
+    param.append("project", projectNum);
+
+    if(bool == true){
+        window.location.href =  `${newURL}portfolio.html?${param}`; 
+    }
+    
+
+
+
     for (const value of Object.values(response[1][projectNum])) {
         projectArr.push(value)
     }
 
     addProject(projectArr[0], projectArr[1], projectArr[2]);
-
+    document.title = projectArr[0];
      // Adding Contacts
     for (const [key, value] of Object.entries(response[4])) {
         addContact(key, value);
@@ -25,7 +68,9 @@ async function getData(){
     console.log(response);
 }
 
-getData();
+var projectNum = window.location.search.replace("?project=", ""); 
+
+getData(projectNum);
 
 /**
  * @param {title of the Portfolio} title 
@@ -64,6 +109,7 @@ function addProject(title, text, fotoUrl){
     articlePortfolio.appendChild(bannerPortfolio);
 }
 
+
 /**
  * @param {title => means name of the brand as String} title 
  * @param {link regarding the contact connection} link 
@@ -85,6 +131,13 @@ function addContact(title, link){
     contactDiv.classList.add("contact");
     contactDiv.setAttribute("id", title);
     contactDiv.innerHTML = htmlString;
+    articleContact.style.backgroundColor = "rgb(25, 22, 22)";
+
 
     articleContact.appendChild(contactDiv);
+}
+
+
+function addMetaDescription(desc){
+    document.querySelector('meta[name="description"]').setAttribute("content", desc);
 }

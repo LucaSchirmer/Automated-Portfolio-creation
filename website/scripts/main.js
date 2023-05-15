@@ -103,6 +103,7 @@ function addContact(title, link){
     contactDiv.setAttribute("id", title);
     contactDiv.innerHTML = htmlString;
 
+    articleContact.style.backgroundColor = "rgb(25, 22, 22)";
     articleContact.appendChild(contactDiv);
 }
 
@@ -239,10 +240,10 @@ function addMailNumberContacts(email, number){
     const htmlString = 
     `
         <a class="contactEmail" href="mailto: ${email}">
-            ${email}
+            email: ${email}
         </a>
         <a class="contactPhone" href="tel: ${number}">
-            ${number}
+            phonenumber: ${number}
         </a>
     `;
 
