@@ -287,11 +287,13 @@ ul{
     flex-wrap: wrap;
     flex-wrap: wrap;
     flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .client{
-    width: 22%;
-    padding: 10vh;
+    width: 21.8%;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
     text-align: center;
 }
 
@@ -378,7 +380,10 @@ ul{
 /* Responsive */
 
 @media (max-width: 1000px){
-    
+
+    .client{
+        width: 30%;
+    }
 }
 
 @media (max-width: 800px){
@@ -454,6 +459,12 @@ ul{
     .articlePortfolio{
         grid-template-columns: 1fr 1fr;
     }
+
+    .service{
+        display: flex;
+        flex-direction: column;
+    }
+
 }
 
 
