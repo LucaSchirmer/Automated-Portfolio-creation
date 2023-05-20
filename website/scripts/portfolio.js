@@ -60,7 +60,10 @@ async function getData(projectNum, bool = false){
 
     addProject(projectArr[0], projectArr[1], projectArr[2]);
     document.title = projectArr[0];
-     // Adding Contacts
+
+    // Adding Contacts
+    addMailNumberContacts(response[0].email, response[0].phoneNumber);
+
     for (const [key, value] of Object.entries(response[4])) {
         addContact(key, value);
     }
@@ -133,6 +136,28 @@ function addContact(title, link){
     contactDiv.innerHTML = htmlString;
     articleContact.style.backgroundColor = "rgb(25, 22, 22)";
 
+
+    articleContact.appendChild(contactDiv);
+}
+
+
+function addMailNumberContacts(email, number){
+    const articleContact = document.querySelector(".articleContact");
+    
+    const htmlString = 
+    `
+        <a class="contactEmail" href="mailto: ${email}">
+            email: ${email}
+        </a>
+        <a class="contactPhone" href="tel: ${number}">
+            phonenumber: ${number}
+        </a>
+    `;
+
+    const contactDiv = document.createElement("div");
+
+    contactDiv.classList.add("mailNphone");
+    contactDiv.innerHTML = htmlString;
 
     articleContact.appendChild(contactDiv);
 }
