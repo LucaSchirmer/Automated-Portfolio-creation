@@ -466,7 +466,30 @@ ul{
         display: flex;
         flex-direction: column;
     }
+    
+    .subPortfolio{
+        background-color: var(--backgroundColor);
+    }
 
+    .subBannerPortfolio{
+        margin-top: 30vh
+    }
+
+    .buttonLeft, .buttonRight{
+        width: 50%; 
+    }
+
+    .buttonLeft img, .buttonRight img{
+        left: 0;  
+        position: fixed; 
+        width: 25%;
+        padding: 0;
+        padding-left: 12.5%; 
+        padding-top: 2.5%; 
+    }
+    .buttonRight img{
+        left: 50%; 
+    }
 }
 
 
