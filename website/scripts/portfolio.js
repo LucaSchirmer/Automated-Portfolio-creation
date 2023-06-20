@@ -141,6 +141,11 @@ function addContact(title, link){
 }
 
 
+/**
+ * @param {email of the client} email 
+ * @param {number of the client} number 
+ */
+
 function addMailNumberContacts(email, number){
     const articleContact = document.querySelector(".articleContact");
     

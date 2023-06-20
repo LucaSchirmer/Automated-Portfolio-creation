@@ -88,6 +88,7 @@ function addMetaDescription(desc){
 function addContact(title, link){
     const articleContact = document.querySelector(".articleContact");
     
+    //html prefab
     const htmlString = 
     `
         <a class="contactAnker" href="${link}">
@@ -118,6 +119,7 @@ function addContact(title, link){
 function addProject(title, text, fotoUrl, num){
     const articlePortfolio = document.querySelector(".articlePortfolio");
     
+    //html prefab
     const htmlString = 
     `
         <div class="headPicture">
@@ -143,12 +145,14 @@ function addProject(title, text, fotoUrl, num){
     bannerPortfolio.setAttribute("id", title);
     bannerPortfolio.innerHTML = htmlString;
 
+    // adding click event
+    // logic to open the project in a new .html - file
     bannerPortfolio.addEventListener("click", () =>{
 
-        // Searchparameter has to be added
         var url = window.location.href;
         let arrayUrl = url.split("/");
 
+        // "deleting" last element
         arrayUrl[arrayUrl.length-1] = "";
 
         let newURL = arrayUrl.join("/")
@@ -156,7 +160,7 @@ function addProject(title, text, fotoUrl, num){
         let param = new URLSearchParams();
         param.append("project", num);
 
-
+        // redirecting to portfolio.html with the choosen content 
         window.location.href =  `${newURL}portfolio.html?${param}`; 
 
     });
@@ -173,6 +177,8 @@ function addProject(title, text, fotoUrl, num){
 function addServices(title, text, fotoUrl){
     const articleServices = document.querySelector(".articleServices");
     
+
+    // html prefab
     const htmlString = 
     `
         <div class="servicePicture fadeIn left">
@@ -209,6 +215,7 @@ function addServices(title, text, fotoUrl){
 function addClients(name, fotoUrl){
     const articleClients = document.querySelector(".articleClients");
     
+    // html prefab
     const htmlString = 
     `
         <div class="clientPicture">
@@ -234,9 +241,15 @@ function addClients(name, fotoUrl){
 }
 
 
+/**
+ * @param {email of the client} email 
+ * @param {number of the client} number 
+ */
+
 function addMailNumberContacts(email, number){
     const articleContact = document.querySelector(".articleContact");
     
+    // html prefab
     const htmlString = 
     `
         <a class="contactEmail" href="mailto: ${email}">

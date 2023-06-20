@@ -25,22 +25,8 @@ const NavSilde = () => {
                 links.style.animation = `navLinksFade 500ms ease forwards ${index / 9 + 0.5}s`;
             }
         });
-
-        // bug fix => expanding arrow shows while having no z-index > 100 => needs to lose rotate(180deg)
-        if(aAusfluege != undefined){
-            expandListUeberblick.forEach(e =>{
-                if(e.classList.contains("toggleRotate")){
-                    e.click();
-                }
-            });
-        }
-
     });
 
-   
-    
-
-    
 }
 
 NavSilde();

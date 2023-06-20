@@ -1,5 +1,3 @@
-
-
 function startObserver(faders){
     const options = {
         threshold: 0, 
@@ -27,4 +25,3 @@ function startObserver(faders){
     });
 
 }
-
