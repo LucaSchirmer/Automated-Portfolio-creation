@@ -13,29 +13,31 @@ fn main(){
 }
 
 
-/**
- * function to create the project files 
- * taking {directory_name as String} as an input
- */
+// function to create the project files 
+// taking {directory_name as String} as an input
 fn create_files(directory_name: &str){
-        
+    let script_locations: String = directory_name.to_owned() + "/script";
+
+
     // init folders
-    let project_folder = fs::create_dir(directory_name).expect("creation of dir failed");;
-    let script_folder = fs::create_dir(directory_name.to_owned() + "/script").expect("creation of dir failed");;
+    let project_folder = fs::create_dir(directory_name).expect("creation of dir failed");
+    let script_folder = fs::create_dir(directory_name.to_owned() + "/script").expect("creation of dir failed");
     
+
+
     // script files
-    let main_js_file = fs::File::create("/script/".to_owned() + "main.js").expect("creation failed");;
-    let intersection_observer_js_file = fs::File::create("/script/".to_owned() + "intersectionObserver.js").expect("creation failed");;
-    let portfolio_js_file = fs::File::create("/script/".to_owned() + "portfolio.js").expect("creation failed");;
-    let responsive_js_file = fs::File::create("/script/".to_owned() + "responsive.js").expect("creation failed");;
+    let main_js_file = fs::File::create(script_locations.to_owned() + "/main.js").expect("creation failed");
+    let intersection_observer_js_file = fs::File::create(script_locations.to_owned() + "/intersectionObserver.js").expect("creation failed");
+    let portfolio_js_file = fs::File::create(script_locations.to_owned() + "/portfolio.js").expect("creation failed");
+    let responsive_js_file = fs::File::create(script_locations.to_owned() + "/responsive.js").expect("creation failed");
 
 
     // html, css files
-    let mut index_html_file = fs::File::create("index.html").expect("creation failed");
-    let portfolio_html_file = fs::File::create("portfolio.html").expect("creation failed");
-    let main_css_file = fs::File::create("main.css").expect("creation failed");
+    let mut index_html_file = fs::File::create(directory_name.to_owned() + "/index.html").expect("creation failed");
+    let portfolio_html_file = fs::File::create(directory_name.to_owned() + "/portfolio.html").expect("creation failed");
+    let main_css_file = fs::File::create(directory_name.to_owned() + "/main.css").expect("creation failed");
     index_html_file.write(b"<!DOCTYPE html>
-        <html lang="en">
+        <html lang=\"en\">
         
         <!-- Made by Luca Schirmer -->
         <head>
@@ -144,10 +146,9 @@ fn create_files(directory_name: &str){
         </html>").expect("write failed");
 
     // json file 
-
     let data_json = fs::File::create("data.json").expect("creation failed");
 
 
-    // todo adding autocreated fotos ?=> maybe upload to drive => downolad into dir 
+    // todo adding autocreated fotos => using the github link
 }
 
