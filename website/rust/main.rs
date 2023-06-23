@@ -1,7 +1,11 @@
 
 use std::fs;
 use std::io::Write;
+use std::io;
 
+
+[dependencies]
+reqwest = { version = "0.11", features = ["json"] }
 
 // main fn => calls programm
 fn main(){
@@ -150,5 +154,10 @@ fn create_files(directory_name: &str){
 
 
     // todo adding autocreated fotos => using the github link
-}
 
+    let request = reqwest::blocking::get("https://github.com/LucaSchirmer/Automated-Portfolio-creation/blob/main/website/img/Pfeil-links.png").expect("request failed");
+    let response = request.text().expect("body invalid");
+
+    let mut out = fs::File::create("rust-test.txt").expect("failed to create file");
+    io::copy(&mut response.as_bytes(), &mut out).expect("failed to copy content");
+}
