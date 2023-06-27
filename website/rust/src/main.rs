@@ -149,15 +149,17 @@ fn create_files(directory_name: &str){
         </html>").expect("write failed");
 
     // json file 
-    let mut data_json = fs::File::create("data.json").expect("creation failed");
+    let data_json = fs::File::create("data.json").expect("creation failed");
 
 
     // todo adding autocreated fotos => using the github link
 
     let request = reqwest::blocking::get("https://www.drive.google.com/uc?export=download&id=1qPgOzD3nuOtLHjSH1mn0OIP87-RCrZEP").expect("request failed");
-    let mut response = request.text().expect("body invalid");
+    let response = request.text().expect("body invalid");
 
-    let mut out = fs::File::create("rust-test.txt").expect("failed to create file");
+    let mut out = fs::File::create("rust_test.png").expect("failed to create file");
     io::copy(&mut response.as_bytes(), &mut out).expect("failed to copy content");
 
-    data_json.write(&mut response.as_bytes());
+    // data_json.write(&mut response.as_bytes());
+
+}
