@@ -1,8 +1,7 @@
 
 use std::fs;
 use std::io::Write;
-use std::io;
-
+use image;
 use reqwest;
 
 
@@ -154,11 +153,23 @@ fn create_files(directory_name: &str){
 
     // todo adding autocreated fotos => using the github link
 
-    let request = reqwest::blocking::get("https://www.drive.google.com/uc?export=download&id=1qPgOzD3nuOtLHjSH1mn0OIP87-RCrZEP").expect("request failed");
-    let response = request.text().expect("body invalid");
-
     let mut out = fs::File::create("rust_test.png").expect("failed to create file");
-    io::copy(&mut response.as_bytes(), &mut out).expect("failed to copy content");
+    let mut img = image::io::Reader::open("path/to/image.png")?
+    .decode().raw_pixels();
+
+    
+
+    let request = reqwest::blocking::get("https://www.drive.google.com/uc?export=download&id=1qPgOzD3nuOtLHjSH1mn0OIP87-RCrZEP").expect("request failed");
+
+    img = request.text().expect("REASON").as_bytes().to_vec();
+
+    // img.save("rust_test.png");
+    // let response = request.bytes().expect("body invalid");
+
+    // let img = image::load_from_memory(&response).expect("loading memory failed");
+
+
+    // io::copy(&mut img, &mut out).expect("failed to copy content");
 
     // data_json.write(&mut response.as_bytes());
 
