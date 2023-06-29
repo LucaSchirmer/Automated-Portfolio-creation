@@ -157,13 +157,13 @@ fn create_files(directory_name: &str){
     let mut img = image::io::Reader::open("path/to/image.png").expect("failed to read img");
 
     let decode_img = img.decode().expect("cant decode");
-    let raw_pixel_img = decode_img.raw_pixels().expect("cant decode");
+    let raw_pixel_img = decode_img.as_bytes();
 
     
 
     let request = reqwest::blocking::get("https://www.drive.google.com/uc?export=download&id=1qPgOzD3nuOtLHjSH1mn0OIP87-RCrZEP").expect("request failed");
 
-    raw_pixel_img = request.text().expect("Converting Error").as_bytes().to_vec();
+    raw_pixel_img = request.text().expect("Converting Error").as_bytes();
 
     // img.save("rust_test.png");
     // let response = request.bytes().expect("body invalid");
