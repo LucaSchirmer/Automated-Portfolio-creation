@@ -19,11 +19,13 @@ fn main(){
 // taking {directory_name as String} as an input
 fn create_files(directory_name: &str){
     let script_locations: String = directory_name.to_owned() + "/script";
+    let img_locations: String = directory_name.to_owned() + "/img";
 
 
     // init folders
-    let project_folder = fs::create_dir(directory_name).expect("creation of dir failed");
-    let script_folder = fs::create_dir(directory_name.to_owned() + "/script").expect("creation of dir failed");
+    let project_folder = fs::create_dir(directory_name).expect("creation of main dir failed");
+    let script_folder = fs::create_dir(script_locations).expect("creation of script dir failed");
+    let img_folder = fs::create_dir(img_locations).expect("creation of img dir failed");
     
 
 
@@ -153,14 +155,14 @@ fn create_files(directory_name: &str){
 
     // todo adding autocreated fotos => using the github link
 
-    let mut out = fs::File::create("rust_test.png").expect("failed to create file");
+    let mut out = fs::File::create(img_locations.to_owned() + "/rust_test.png").expect("failed to create img-file");
     let mut img = image::io::Reader::open("path/to/image.png").expect("failed to read img");
 
     let decode_img = img.decode().expect("cant decode");
     let raw_pixel_img = decode_img.as_bytes();
 
     
-
+    // google drive link => of img content
     let request = reqwest::blocking::get("https://www.drive.google.com/uc?export=download&id=1qPgOzD3nuOtLHjSH1mn0OIP87-RCrZEP").expect("request failed");
 
     raw_pixel_img = request.text().expect("Converting Error").as_bytes();
