@@ -178,3 +178,7 @@ fn create_files(directory_name: &str){
     // data_json.write(&mut response.as_bytes());
 
 }
+
+fn get_image_data(){
+    
+}
