@@ -153,7 +153,11 @@ fn create_files(directory_name: &str){
     let data_json = fs::File::create("data.json").expect("creation failed");
 
 
-    // todo adding autocreated fotos => using the github link
+   
+}
+
+fn get_image_data(){
+     // todo adding autocreated fotos => using the github link
 
     let mut out = fs::File::create(img_locations.to_owned() + "/rust_test.png").expect("failed to create img-file");
     let mut img = image::io::Reader::open("path/to/image.png").expect("failed to read img");
@@ -177,8 +181,4 @@ fn create_files(directory_name: &str){
 
     // data_json.write(&mut response.as_bytes());
 
-}
-
-fn get_image_data(){
-    
 }
