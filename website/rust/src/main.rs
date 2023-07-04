@@ -14,7 +14,10 @@ fn main(){
     create_files("project");
 }
 
-
+struct foto_file{
+    name: String,
+    url: String,
+}
 // function to create the project files 
 // taking {directory_name as String} as an input
 fn create_files(directory_name: &str){
@@ -153,7 +156,7 @@ fn create_files(directory_name: &str){
     let data_json = fs::File::create("data.json").expect("creation failed");
 
 
-   
+    let mut file_map = HashMap::from(foto_file::new("cancelXpng.png", "https://www.drive.google.com/uc?export=download&id=1qPgOzD3nuOtLHjSH1mn0OIP87-RCrZEP"));   
 }
 
 fn get_image_data(){
