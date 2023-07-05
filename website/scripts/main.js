@@ -12,8 +12,8 @@ async function getData(){
     document.title = response[0].title;
     document.querySelector(".aboutName").innerHTML = response[0].title;
     document.querySelector(".aboutText").innerHTML = response[0].aboutText;
-    document.querySelector(".aboutFoto").firstChild.src = response[0].aboutFoto;
-    document.querySelector(".aboutFoto").firstChild.alt = response[0].aboutFoto;
+    document.querySelector(".aboutFoto").firstElementChild.src = response[0].aboutFoto;
+    document.querySelector(".aboutFoto").firstElementChild.alt = response[0].aboutFoto;
 
     document.querySelector(":root").style.setProperty("--mainColor", response[0].mainColor);
     document.querySelector(":root").style.setProperty("--secondaryColor", response[0].secondaryColor);
