@@ -157,7 +157,9 @@ fn create_files(directory_name: &str){
 
 
     let mut file_map = HashMap::from(
-        foto_file::new("cancelXpng.png", "https://www.drive.google.com/uc?export=download&id=1qPgOzD3nuOtLHjSH1mn0OIP87-RCrZEP")
+        foto_file::new("cancelXpng.png", "https://www.drive.google.com/uc?export=download&id=1qPgOzD3nuOtLHjSH1mn0OIP87-RCrZEP"),
+        foto_file::new("Pfeil-links.png", "https://www.drive.google.com/uc?export=download&id=1nl2uPA5YB_MKzBH24w0a2Fc_5TSSjhAP"),
+        foto_file::new("Pfeil-rechts.png", "https://www.drive.google.com/uc?export=download&id=1DHdP_8LFflffZ73uELMpx2gCfW3Z22Bx"),
     );   
 }
 
@@ -167,6 +169,15 @@ fn get_image_data(hash_map: mut HashMap){
     for(let mut i in hash_map){
         let mut out = fs::File::create(img_locations.to_owned() + i::name).expect("failed to create img-file");
         let mut img = image::io::Reader::open("path/to/image.png").expect("failed to read img");
+
+        let decode_img = img.decode().expect("cant decode");
+        let raw_pixel_img = decode_img.as_bytes();
+
+        // google drive link => of img content
+        let request = reqwest::blocking::get(foto_file::url).expect("request failed");
+
+        raw_pixel_img = request.text().expect("Converting Error").as_bytes();
+
     }
 
 
