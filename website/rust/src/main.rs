@@ -156,11 +156,19 @@ fn create_files(directory_name: &str){
     let data_json = fs::File::create("data.json").expect("creation failed");
 
 
-    let mut file_map = HashMap::from(foto_file::new("cancelXpng.png", "https://www.drive.google.com/uc?export=download&id=1qPgOzD3nuOtLHjSH1mn0OIP87-RCrZEP"));   
+    let mut file_map = HashMap::from(
+        foto_file::new("cancelXpng.png", "https://www.drive.google.com/uc?export=download&id=1qPgOzD3nuOtLHjSH1mn0OIP87-RCrZEP")
+    );   
 }
 
-fn get_image_data(){
+fn get_image_data(hash_map: mut HashMap){
      // todo adding autocreated fotos => using the github link
+
+    for(let mut i in hash_map){
+        let mut out = fs::File::create(img_locations.to_owned() + i::name).expect("failed to create img-file");
+        let mut img = image::io::Reader::open("path/to/image.png").expect("failed to read img");
+    }
+
 
     let mut out = fs::File::create(img_locations.to_owned() + "/rust_test.png").expect("failed to create img-file");
     let mut img = image::io::Reader::open("path/to/image.png").expect("failed to read img");
