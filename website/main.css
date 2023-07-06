@@ -260,7 +260,7 @@ ul{
 
 .service{
     padding: 20vh;
-    height: 30vh;
+    min-height: 30vh;
     text-align: center;
 
     display: grid; 
