@@ -119,6 +119,12 @@ function addContact(title, link){
 function addProject(title, text, fotoUrl, num){
     const articlePortfolio = document.querySelector(".articlePortfolio");
     
+    if(text.length > 150){
+       text = text.slice(0,147);
+       text += "...";
+       console.log(text)
+   }
+
     //html prefab
     const htmlString = 
     `
@@ -182,7 +188,7 @@ function addServices(title, text, fotoUrl){
     const htmlString = 
     `
         <div class="servicePicture fadeIn left">
-            <img src="${fotoUrl}" alt="PortfolioPicture">
+            <img src="${fotoUrl}" alt="${title}" id="${title}">
         </div>
         <div class="serviceArticle fadeIn right">
             <h1 class="serviceHeadline">

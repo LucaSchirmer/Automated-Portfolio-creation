@@ -88,7 +88,7 @@ function addProject(title, text, fotoUrl){
     const htmlString = 
     `
         <div class="headPicture">
-            <img src="${fotoUrl}" alt="PortfolioPicture">
+            <img src="${fotoUrl}"alt="${title}" id="${title.replace(" ", "_").replace("=", "_")}">
         </div>
         <div class="bannerArticle">
             <h1 class="bannerHeadline">
