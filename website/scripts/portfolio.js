@@ -64,9 +64,22 @@ async function getData(projectNum, bool = false){
     // Adding Contacts
     addMailNumberContacts(response[0].email, response[0].phoneNumber);
 
+    // Adding Parent div for contacts
+    addContantDiv();
+
+    let i = 0;
     for (const [key, value] of Object.entries(response[4])) {
+        i += 1;
         addContact(key, value);
     }
+
+    let contactContainer = document.querySelector(".contactContainer");
+    if(i % 3 == 0 || i > 7) {
+        contactContainer.style.gridTemplateColumns = "1fr 1fr 1fr";
+    }else{
+        contactContainer.style.gridTemplateColumns = "1fr 1fr";
+    }
+
 
     console.log(response);
 }
@@ -119,7 +132,7 @@ function addProject(title, text, fotoUrl){
  */
 
 function addContact(title, link){
-    const articleContact = document.querySelector(".articleContact");
+    const contactContainer = document.querySelector(".contactContainer");
     
     const htmlString = 
     `
@@ -134,12 +147,16 @@ function addContact(title, link){
     contactDiv.classList.add("contact");
     contactDiv.setAttribute("id", title);
     contactDiv.innerHTML = htmlString;
-    articleContact.style.backgroundColor = "rgb(25, 22, 22)";
 
-
-    articleContact.appendChild(contactDiv);
+    contactContainer.appendChild(contactDiv);
 }
 
+function addContantDiv(){
+    let contactDiv = document.createElement("div");
+    contactDiv.classList.add("contactContainer");
+
+    document.querySelector(".articleContact").appendChild(contactDiv)
+}
 
 /**
  * @param {email of the client} email 

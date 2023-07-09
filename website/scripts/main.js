@@ -44,27 +44,43 @@ async function getData(){
         }
 
         addServices(serviceArr[0], serviceArr[1], serviceArr[2]);
-    }
-    
+}
+
     // Adding Clients
     for(let i in response[2]){
 
         let clienteArr = [];
-
-        for (const value of Object.values(response[3][i])) {
-            clienteArr.push(value)
+        if(response[3][0]){
+            for (const value of Object.values(response[3][i])) {
+                clienteArr.push(value)
+            }
         }
 
         addClients(clienteArr[0], clienteArr[1], clienteArr[2]);
     }
 
-     // Adding Contacts
+        
+    // Adding Contacts
     addMailNumberContacts(response[0].email, response[0].phoneNumber);
 
+    // Adding Parent div for contacts
+    addContantDiv();
+
+    let i = 0;
     for (const [key, value] of Object.entries(response[4])) {
+        i += 1;
         addContact(key, value);
     }
     console.log(response);
+    let contactContainer = document.querySelector(".contactContainer");
+    if(i % 3 == 0 || i > 7) {
+        contactContainer.style.gridTemplateColumns = "1fr 1fr 1fr";
+    }else{
+        contactContainer.style.gridTemplateColumns = "1fr 1fr";
+    }
+
+
+
 
     const faders = document.querySelectorAll(".fadeIn");
     startObserver(faders);
@@ -86,7 +102,7 @@ function addMetaDescription(desc){
  */
 
 function addContact(title, link){
-    const articleContact = document.querySelector(".articleContact");
+    const contactContainer = document.querySelector(".contactContainer");
     
     //html prefab
     const htmlString = 
@@ -104,10 +120,16 @@ function addContact(title, link){
     contactDiv.setAttribute("id", title);
     contactDiv.innerHTML = htmlString;
 
-    articleContact.style.backgroundColor = "rgb(25, 22, 22)";
-    articleContact.appendChild(contactDiv);
+    contactContainer.appendChild(contactDiv);
 }
 
+
+function addContantDiv(){
+    let contactDiv = document.createElement("div");
+    contactDiv.classList.add("contactContainer");
+
+    document.querySelector(".articleContact").appendChild(contactDiv)
+}
 
 /**
  * @param {title of the Portfolio} title 
@@ -129,7 +151,7 @@ function addProject(title, text, fotoUrl, num){
     const htmlString = 
     `
         <div class="headPicture">
-            <img src="${fotoUrl}" alt="PortfolioPicture">
+            <img src="${fotoUrl}" alt="${title}" id="${title.replace(" ", "_").replace("=", "_")}">
         </div>
         <div class="bannerArticle">
             <h1 class="bannerHeadline">

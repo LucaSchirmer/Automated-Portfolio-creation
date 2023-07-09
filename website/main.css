@@ -316,10 +316,18 @@ ul{
     flex-wrap: wrap;
 
     padding: 10vh;
+    background-color: rgb(25, 22, 22);
+}
+
+.contactContainer{
+    display: grid; 
+
+    width: 100%;
+
+    place-content: center;
 }
 
 .contact{
-    width: 33%; 
     height: 14vh; 
 
     display: flex; 
@@ -512,6 +520,14 @@ ul{
     
     .serviceText{
         font-size: 1rem;
+    }
+    
+    .service{
+        padding: 10vh;
+    }
+
+    .subBannerPortfolio{
+        padding: 7vh;
     }
     
 }
