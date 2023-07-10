@@ -159,7 +159,15 @@ fn create_files(directory_name: &str){
     let mut file_map = HashMap::from(
         foto_file::new("cancelXpng.png", "https://www.drive.google.com/uc?export=download&id=1qPgOzD3nuOtLHjSH1mn0OIP87-RCrZEP"),
         foto_file::new("Pfeil-links.png", "https://www.drive.google.com/uc?export=download&id=1nl2uPA5YB_MKzBH24w0a2Fc_5TSSjhAP"),
-        foto_file::new("Pfeil-rechts.png", "https://www.drive.google.com/uc?export=download&id=1DHdP_8LFflffZ73uELMpx2gCfW3Z22Bx"),
+        foto_file::new("Pfeil-rechts.png", "https://www.drive.google.com/uc?export=download&id=1jtrav1Dek-x9TSPGUZsVr4QO_rfB_4Yl"),
+        foto_file::new("instagram.png", "https://www.drive.google.com/uc?export=download&id=1-O98p9e5vLn55BreOVmfG6QbJp_6HKG-"),
+        foto_file::new("whatsapp.png", "https://www.drive.google.com/uc?export=download&id=1-SsFO1o3DaPZYhnRjGiV21prd_VK4CWu"),
+        foto_file::new("facebook.png", "https://www.drive.google.com/uc?export=download&id=1LLiZjgFZHQt21hdmf-TLpKdrF9rzAuO0"),
+        foto_file::new("pinterest.png", "https://www.drive.google.com/uc?export=download&id=1NLWay3PrahDrylPhMn_2f3CLEf56dph-"),
+        foto_file::new("youtube.png", "https://www.drive.google.com/uc?export=download&id=1Q-HmSVBTF1lTFqc-wllXufn-Hm6Wfehw"),
+        foto_file::new("linkedin.png", "https://www.drive.google.com/uc?export=download&id=1THqwA4OaztIt1yKZFYeWccIg3Sy-fxil"),
+        foto_file::new("github.png", "https://www.drive.google.com/uc?export=download&id=1UL-nPbpu2Ph6wLC2OIw1XqeZnUrVP2bu"),
+        foto_file::new("twitter.png", "https://www.drive.google.com/uc?export=download&id=1Z112yuzn14VrHaMvTwarIRY_gjiOPmBT"),
     );   
 }
 
