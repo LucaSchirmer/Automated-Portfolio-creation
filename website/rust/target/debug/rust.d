@@ -1,1 +1,1 @@
-C:\Users\LucaS\OneDrive\Desktop\programmieren_code\Automated-Portfolio-creation\website\rust\target\debug\rust.exe: C:\Users\LucaS\OneDrive\Desktop\programmieren_code\Automated-Portfolio-creation\website\rust\src\main.rs
+C:\Users\LucaS\Desktop\programmieren_code\html\Automated-Portfolio-creation\website\rust\target\debug\rust.exe: C:\Users\LucaS\Desktop\programmieren_code\html\Automated-Portfolio-creation\website\rust\src\main.rs

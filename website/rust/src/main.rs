@@ -4,7 +4,6 @@ use std::io::Write;
 use image;
 use reqwest;
 
-
 // main fn => calls programm
 fn main(){
     println!("init Programm");
@@ -14,10 +13,26 @@ fn main(){
     create_files("project");
 }
 
-struct foto_file{
+#[derive(Debug)]
+struct FotoFile{
     name: String,
     url: String,
 }
+
+impl FotoFile {
+    fn new(name: &str, url: &str) -> FotoFile {
+        FotoFile { name: name.to_string(), url: url.to_string() }
+    }
+
+    fn name(&self) -> &String{
+        &self.name
+    }
+    
+    fn url(&self) -> &String{
+        &self.url
+    }
+}
+
 // function to create the project files 
 // taking {directory_name as String} as an input
 fn create_files(directory_name: &str){
@@ -26,9 +41,9 @@ fn create_files(directory_name: &str){
 
 
     // init folders
-    let project_folder = fs::create_dir(directory_name).expect("creation of main dir failed");
-    let script_folder = fs::create_dir(script_locations).expect("creation of script dir failed");
-    let img_folder = fs::create_dir(img_locations).expect("creation of img dir failed");
+    let project_folder = fs::create_dir(directory_name.to_owned()).expect("creation of main dir failed");
+    let script_folder = fs::create_dir(script_locations.to_owned()).expect("creation of script dir failed");
+    let img_folder = fs::create_dir(img_locations.to_owned()).expect("creation of img dir failed");
     
 
 
@@ -153,62 +168,68 @@ fn create_files(directory_name: &str){
         </html>").expect("write failed");
 
     // json file 
-    let data_json = fs::File::create("data.json").expect("creation failed");
+    let mut data_json = fs::File::create("data.json").expect("creation failed");
 
 
-    let mut file_map = HashMap::from(
-        foto_file::new("cancelXpng.png", "https://www.drive.google.com/uc?export=download&id=1qPgOzD3nuOtLHjSH1mn0OIP87-RCrZEP"),
-        foto_file::new("Pfeil-links.png", "https://www.drive.google.com/uc?export=download&id=1nl2uPA5YB_MKzBH24w0a2Fc_5TSSjhAP"),
-        foto_file::new("Pfeil-rechts.png", "https://www.drive.google.com/uc?export=download&id=1jtrav1Dek-x9TSPGUZsVr4QO_rfB_4Yl"),
-        foto_file::new("instagram.png", "https://www.drive.google.com/uc?export=download&id=1-O98p9e5vLn55BreOVmfG6QbJp_6HKG-"),
-        foto_file::new("whatsapp.png", "https://www.drive.google.com/uc?export=download&id=1-SsFO1o3DaPZYhnRjGiV21prd_VK4CWu"),
-        foto_file::new("facebook.png", "https://www.drive.google.com/uc?export=download&id=1LLiZjgFZHQt21hdmf-TLpKdrF9rzAuO0"),
-        foto_file::new("pinterest.png", "https://www.drive.google.com/uc?export=download&id=1NLWay3PrahDrylPhMn_2f3CLEf56dph-"),
-        foto_file::new("youtube.png", "https://www.drive.google.com/uc?export=download&id=1Q-HmSVBTF1lTFqc-wllXufn-Hm6Wfehw"),
-        foto_file::new("linkedin.png", "https://www.drive.google.com/uc?export=download&id=1THqwA4OaztIt1yKZFYeWccIg3Sy-fxil"),
-        foto_file::new("github.png", "https://www.drive.google.com/uc?export=download&id=1UL-nPbpu2Ph6wLC2OIw1XqeZnUrVP2bu"),
-        foto_file::new("twitter.png", "https://www.drive.google.com/uc?export=download&id=1Z112yuzn14VrHaMvTwarIRY_gjiOPmBT"),
-    );   
-}
+    let file_map = [
+        FotoFile::new("cancelXpng.png", "https://www.drive.google.com/uc?export=download&id=1qPgOzD3nuOtLHjSH1mn0OIP87-RCrZEP"),
+        FotoFile::new("Pfeil-links.png", "https://www.drive.google.com/uc?export=download&id=1nl2uPA5YB_MKzBH24w0a2Fc_5TSSjhAP"),
+        FotoFile::new("Pfeil-rechts.png", "https://www.drive.google.com/uc?export=download&id=1jtrav1Dek-x9TSPGUZsVr4QO_rfB_4Yl"),
+        FotoFile::new("instagram.png", "https://www.drive.google.com/uc?export=download&id=1-O98p9e5vLn55BreOVmfG6QbJp_6HKG-"),
+        FotoFile::new("whatsapp.png", "https://www.drive.google.com/uc?export=download&id=1-SsFO1o3DaPZYhnRjGiV21prd_VK4CWu"),
+        FotoFile::new("facebook.png", "https://www.drive.google.com/uc?export=download&id=1LLiZjgFZHQt21hdmf-TLpKdrF9rzAuO0"),
+        FotoFile::new("pinterest.png", "https://www.drive.google.com/uc?export=download&id=1NLWay3PrahDrylPhMn_2f3CLEf56dph-"),
+        FotoFile::new("youtube.png", "https://www.drive.google.com/uc?export=download&id=1Q-HmSVBTF1lTFqc-wllXufn-Hm6Wfehw"),
+        FotoFile::new("linkedin.png", "https://www.drive.google.com/uc?export=download&id=1THqwA4OaztIt1yKZFYeWccIg3Sy-fxil"),
+        FotoFile::new("github.png", "https://www.drive.google.com/uc?export=download&id=1UL-nPbpu2Ph6wLC2OIw1XqeZnUrVP2bu"),
+        FotoFile::new("twitter.png", "https://www.drive.google.com/uc?export=download&id=1Z112yuzn14VrHaMvTwarIRY_gjiOPmBT"),
+    ];   
 
-fn get_image_data(hash_map: mut HashMap){
-     // todo adding autocreated fotos => using the github link
 
-    for(let mut i in hash_map){
-        let mut out = fs::File::create(img_locations.to_owned() + i::name).expect("failed to create img-file");
-        let mut img = image::io::Reader::open("path/to/image.png").expect("failed to read img");
+    for file in file_map.iter() {
+        let mut out = fs::File::create(img_locations.to_owned() + file.name()).expect("failed to create img-file");
+        let mut img = image::io::Reader::open(img_locations.to_owned() + file.name()).expect("failed to read img");
 
         let decode_img = img.decode().expect("cant decode");
         let raw_pixel_img = decode_img.as_bytes();
 
         // google drive link => of img content
-        let request = reqwest::blocking::get(foto_file::url).expect("request failed");
+        let request = reqwest::blocking::get(file.url()).expect("request failed");
 
         raw_pixel_img = request.text().expect("Converting Error").as_bytes();
+
 
     }
 
 
     let mut out = fs::File::create(img_locations.to_owned() + "/rust_test.png").expect("failed to create img-file");
-    let mut img = image::io::Reader::open("path/to/image.png").expect("failed to read img");
+    let mut img = image::io::Reader::open(img_locations.to_owned() + "/rust_test.png").expect("failed to read img");
 
     let decode_img = img.decode().expect("cant decode");
-    let raw_pixel_img = decode_img.as_bytes();
+    let mut raw_pixel_img = decode_img.as_bytes();
 
     
     // google drive link => of img content
-    let request = reqwest::blocking::get("https://www.drive.google.com/uc?export=download&id=1qPgOzD3nuOtLHjSH1mn0OIP87-RCrZEP").expect("request failed");
+    let mut request = reqwest::blocking::get("https://www.drive.google.com/uc?export=download&id=1qPgOzD3nuOtLHjSH1mn0OIP87-RCrZEP").expect("request failed");
 
     raw_pixel_img = request.text().expect("Converting Error").as_bytes();
 
-    // img.save("rust_test.png");
-    // let response = request.bytes().expect("body invalid");
-
-    // let img = image::load_from_memory(&response).expect("loading memory failed");
-
-
-    // io::copy(&mut img, &mut out).expect("failed to copy content");
-
-    // data_json.write(&mut response.as_bytes());
-
+    img.write(raw_pixel_img);
+    img.save()
 }
+
+// fn get_image_data(hash_map: HashMap::<String, String>, directory_name, img_locations){
+//      // todo adding autocreated fotos => using the github link
+
+
+//     // img.save("rust_test.png");
+//     // let response = request.bytes().expect("body invalid");
+
+//     // let img = image::load_from_memory(&response).expect("loading memory failed");
+
+
+//     // io::copy(&mut img, &mut out).expect("failed to copy content");
+
+//     // data_json.write(&mut response.as_bytes());
+
+// }
