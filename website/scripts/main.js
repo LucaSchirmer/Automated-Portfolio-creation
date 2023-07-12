@@ -108,7 +108,7 @@ function addContact(title, link){
     const htmlString = 
     `
         <a class="contactAnker" href="${link}">
-            <img class="contactIMG" src="img/ContactLogos/${title}.png" alt="${title}"> 
+            <img class="contactIMG" src="img/${title}.png" alt="${title}"> 
         </a>
         <span class="contactSpan"> ${title} </span>
     `;

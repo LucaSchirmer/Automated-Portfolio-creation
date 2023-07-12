@@ -2,7 +2,8 @@
 use std::fs;
 use std::io::Write;
 use image;
-use reqwest;
+use reqwest::blocking::Client;
+
 
 // main fn => calls programm
 fn main(){
@@ -13,7 +14,7 @@ fn main(){
     create_files("project");
 }
 
-#[derive(Debug)]
+
 struct FotoFile{
     name: String,
     url: String,
@@ -168,7 +169,7 @@ fn create_files(directory_name: &str){
         </html>").expect("write failed");
 
     // json file 
-    let mut data_json = fs::File::create("data.json").expect("creation failed");
+    let data_json = fs::File::create("data.json").expect("creation failed");
 
 
     let file_map = [
@@ -187,35 +188,30 @@ fn create_files(directory_name: &str){
 
 
     for file in file_map.iter() {
-        let mut out = fs::File::create(img_locations.to_owned() + file.name()).expect("failed to create img-file");
-        let mut img = image::io::Reader::open(img_locations.to_owned() + file.name()).expect("failed to read img");
+        // let mut out = fs::File::create(img_locations.to_owned() + file.name()).expect("failed to create img-file");
+        // let mut img = image::io::Reader::open(img_locations.to_owned() + file.name()).expect("failed to read img");
 
-        let decode_img = img.decode().expect("cant decode");
-        let raw_pixel_img = decode_img.as_bytes();
+        // let decode_img = img.decode().expect("cant decode");
+        // let raw_pixel_img = decode_img.as_bytes();
 
-        // google drive link => of img content
-        let request = reqwest::blocking::get(file.url()).expect("request failed");
+        // // google drive link => of img content
+        // let request = reqwest::blocking::get(file.url()).expect("request failed");
 
-        raw_pixel_img = request.text().expect("Converting Error").as_bytes();
+        // raw_pixel_img = request.text().expect("Converting Error").as_bytes();
 
+        // Download the image from the Google Drive link
+        let client = Client::new();
+        let response = client.get(file.url()).send().expect("Request failed");
 
-    }
+        let bytes = response.bytes().expect("Failed to retrieve image bytes");
+        let raw_pixel_img: Vec<u8> = bytes.to_vec();
 
+        // Save the image
+        let img_path = format!("{}/{}", img_locations, file.name());
+        let mut out = fs::File::create(&img_path).expect("Failed to create image file");
+        out.write_all(&raw_pixel_img).expect("Failed to write image file");
+    }  
 
-    let mut out = fs::File::create(img_locations.to_owned() + "/rust_test.png").expect("failed to create img-file");
-    let mut img = image::io::Reader::open(img_locations.to_owned() + "/rust_test.png").expect("failed to read img");
-
-    let decode_img = img.decode().expect("cant decode");
-    let mut raw_pixel_img = decode_img.as_bytes();
-
-    
-    // google drive link => of img content
-    let mut request = reqwest::blocking::get("https://www.drive.google.com/uc?export=download&id=1qPgOzD3nuOtLHjSH1mn0OIP87-RCrZEP").expect("request failed");
-
-    raw_pixel_img = request.text().expect("Converting Error").as_bytes();
-
-    img.write(raw_pixel_img);
-    img.save()
 }
 
 // fn get_image_data(hash_map: HashMap::<String, String>, directory_name, img_locations){
