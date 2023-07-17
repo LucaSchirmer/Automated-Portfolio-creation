@@ -49,11 +49,581 @@ fn create_files(directory_name: &str){
 
 
     // script files
-    let main_js_file = fs::File::create(script_locations.to_owned() + "/main.js").expect("creation failed");
-    let intersection_observer_js_file = fs::File::create(script_locations.to_owned() + "/intersectionObserver.js").expect("creation failed");
-    let portfolio_js_file = fs::File::create(script_locations.to_owned() + "/portfolio.js").expect("creation failed");
-    let responsive_fjs_file = fs::File::create(script_locations.to_owned() + "/responsive.js").expect("creation failed");
+    let mut main_js_file = fs::File::create(script_locations.to_owned() + "/main.js").expect("creation failed");
+    let mut intersection_observer_js_file = fs::File::create(script_locations.to_owned() + "/intersectionObserver.js").expect("creation failed");
+    let mut portfolio_js_file = fs::File::create(script_locations.to_owned() + "/portfolio.js").expect("creation failed");
+    let mut responsive_fjs_file = fs::File::create(script_locations.to_owned() + "/responsive.js").expect("creation failed");
 
+    main_js_file.write(b"// Aquire data
+        async function getData(){
+        
+            // Url Json file
+            let dataJsonUrl = \"../data.json\";
+        
+            const request =  await fetch(dataJsonUrl);
+            const response = await request.json();
+            
+            addMetaDescription(response[0].metaDescription);
+            document.title = response[0].title;
+            document.querySelector(\".aboutName\").innerHTML = response[0].title;
+            document.querySelector(\".aboutText\").innerHTML = response[0].aboutText;
+            document.querySelector(\".aboutFoto\").firstElementChild.src = response[0].aboutFoto;
+            document.querySelector(\".aboutFoto\").firstElementChild.alt = response[0].aboutFoto;
+        
+            document.querySelector(\":root\").style.setProperty(\"--mainColor\", response[0].mainColor);
+            document.querySelector(\":root\").style.setProperty(\"--secondaryColor\", response[0].secondaryColor);
+            document.querySelector(\":root\").style.setProperty(\"--accentColor\", response[0].accentColor);
+            document.querySelector(\":root\").style.setProperty(\"--backgroundColor\", response[0].backgroundColor);
+            
+        
+        
+            // Adding Projects
+            for(let i in response[1]){
+        
+                let projectArr = [];
+        
+                for (const value of Object.values(response[1][i])) {
+                    projectArr.push(value)
+                }
+        
+                addProject(projectArr[0], projectArr[1], projectArr[2], i);
+            } 
+            
+            // Adding Services
+            for(let i in response[2]){
+        
+                let serviceArr = [];
+        
+                for (const value of Object.values(response[2][i])) {
+                    serviceArr.push(value)
+                }
+        
+                addServices(serviceArr[0], serviceArr[1], serviceArr[2]);
+        }
+        
+            // Adding Clients
+            for(let i in response[2]){
+        
+                let clienteArr = [];
+                if(response[3][0]){
+                    for (const value of Object.values(response[3][i])) {
+                        clienteArr.push(value)
+                    }
+                }
+        
+                addClients(clienteArr[0], clienteArr[1], clienteArr[2]);
+            }
+        
+                
+            // Adding Contacts
+            addMailNumberContacts(response[0].email, response[0].phoneNumber);
+        
+            // Adding Parent div for contacts
+            addContantDiv();
+        
+            let i = 0;
+            for (const [key, value] of Object.entries(response[4])) {
+                i += 1;
+                addContact(key, value);
+            }
+            console.log(response);
+            let contactContainer = document.querySelector(\".contactContainer\");
+            if(i % 3 == 0 || i > 7) {
+                contactContainer.style.gridTemplateColumns = \"1fr 1fr 1fr\";
+            }else{
+                contactContainer.style.gridTemplateColumns = \"1fr 1fr\";
+            }
+        
+        
+        
+        
+            const faders = document.querySelectorAll(\".fadeIn\");
+            startObserver(faders);
+        }
+        
+        getData();
+        
+        
+        
+        
+        function addMetaDescription(desc){
+            document.querySelector('meta[name=\"description\"]').setAttribute(\"content\", desc);
+        }
+        
+        
+        /**
+         * @param {title => means name of the brand as String} title 
+         * @param {link regarding the contact connection} link 
+         */
+        
+        function addContact(title, link){
+            const contactContainer = document.querySelector(\".contactContainer\");
+            
+            //html prefab
+            const htmlString = 
+            `
+                <a class=\"contactAnker\" href=\"${link}\">
+                    <img class=\"contactIMG\" src=\"img/${title}.png\" alt=\"${title}\"> 
+                </a>
+                <span class=\"contactSpan\"> ${title} </span>
+            `;
+        
+            const contactDiv = document.createElement(\"div\");
+        
+            contactDiv.classList.add(\"contact\");
+            contactDiv.classList.add(\"fadeIn\");
+            contactDiv.setAttribute(\"id\", title);
+            contactDiv.innerHTML = htmlString;
+        
+            contactContainer.appendChild(contactDiv);
+        }
+        
+        
+        function addContantDiv(){
+            let contactDiv = document.createElement(\"div\");
+            contactDiv.classList.add(\"contactContainer\");
+        
+            document.querySelector(\".articleContact\").appendChild(contactDiv)
+        }
+        
+        /**
+         * @param {title of the Portfolio} title 
+         * @param {text of the Portfolio} text 
+         * @param {fotoUrl URL if the image} fotoUrl 
+         * @param {num of the Projects} num 
+         */
+        
+        function addProject(title, text, fotoUrl, num){
+            const articlePortfolio = document.querySelector(\".articlePortfolio\");
+            
+            if(text.length > 150){
+            text = text.slice(0,147);
+            text += \"...\";
+            console.log(text)
+        }
+        
+            //html prefab
+            const htmlString = 
+            `
+                <div class=\"headPicture\">
+                    <img src=\"${fotoUrl}\" alt=\"${title}\" id=\"${title.replace(\" \", \"_\").replace(\"=\", \"_\")}\">
+                </div>
+                <div class=\"bannerArticle\">
+                    <h1 class=\"bannerHeadline\">
+                        ${title}
+                    </h1>
+        
+                    <!-- Text has to be limited to a certain amout of characters -->
+                    <p class=\"bannerText\">
+                        ${text}
+                    </p>
+                </div>
+            `;
+        
+            const bannerPortfolio = document.createElement(\"div\");
+        
+            bannerPortfolio.classList.add(\"bannerPortfolio\");
+            bannerPortfolio.classList.add(\"fadeIn\");
+            bannerPortfolio.classList.add(\"left\");
+            bannerPortfolio.setAttribute(\"id\", title);
+            bannerPortfolio.innerHTML = htmlString;
+        
+            // adding click event
+            // logic to open the project in a new .html - file
+            bannerPortfolio.addEventListener(\"click\", () =>{
+        
+                var url = window.location.href;
+                let arrayUrl = url.split(\"/\");
+        
+                // \"deleting\" last element
+                arrayUrl[arrayUrl.length-1] = \"\";
+        
+                let newURL = arrayUrl.join(\"/\")
+        
+                let param = new URLSearchParams();
+                param.append(\"project\", num);
+        
+                // redirecting to portfolio.html with the choosen content 
+                window.location.href =  `${newURL}portfolio.html?${param}`; 
+        
+            });
+        
+            articlePortfolio.appendChild(bannerPortfolio);
+        }
+        
+        
+        /**
+         * @param {title of the Service} title 
+         * @param {text of the Service} text 
+         */
+        
+        function addServices(title, text, fotoUrl){
+            const articleServices = document.querySelector(\".articleServices\");
+            
+        
+            // html prefab
+            const htmlString = 
+            `
+                <div class=\"servicePicture fadeIn left\">
+                    <img src=\"${fotoUrl}\" alt=\"${title}\" id=\"${title}\">
+                </div>
+                <div class=\"serviceArticle fadeIn right\">
+                    <h1 class=\"serviceHeadline\">
+                        ${title}
+                    </h1>
+        
+                    <!-- Text has to be limited to a certain amout of characters -->
+                    <p class=\"serviceText\">
+                        ${text}
+                    </p>
+                </div>
+            `;
+        
+            const service = document.createElement(\"div\");
+        
+            service.classList.add(\"service\");
+            service.setAttribute(\"id\", title);
+            service.innerHTML = htmlString;
+        
+            articleServices.appendChild(service);
+        }
+        
+        
+        /**
+         * @param {name of the client} name 
+         * @param {fotoUrl of the client} fotoUrl 
+         */
+        
+        // Perhaps adding a Photo?  
+        function addClients(name, fotoUrl){
+            const articleClients = document.querySelector(\".articleClients\");
+            
+            // html prefab
+            const htmlString = 
+            `
+                <div class=\"clientPicture\">
+                    <img src=\"${fotoUrl}\" alt=\"${name} Picture\">
+                </div>
+                <div class=\"clientName\">
+                    <h1 class=\"clientHeadline\">
+                    ${name}
+                    </h1>
+                </div>
+            `;
+        
+            const client = document.createElement(\"div\");
+        
+            client.classList.add(\"client\");
+            client.classList.add(\"fadeIn\");
+            client.classList.add(\"right\");
+            
+            client.setAttribute(\"id\", name);
+            client.innerHTML = htmlString;
+        
+            articleClients.appendChild(client);
+        }
+        
+        
+        /**
+         * @param {email of the client} email 
+         * @param {number of the client} number 
+         */
+        
+        function addMailNumberContacts(email, number){
+            const articleContact = document.querySelector(\".articleContact\");
+            
+            // html prefab
+            const htmlString = 
+            `
+                <a class=\"contactEmail\" href=\"mailto: ${email}\">
+                    email: ${email}
+                </a>
+                <a class=\"contactPhone\" href=\"tel: ${number}\">
+                    phonenumber: ${number}
+                </a>
+            `;
+        
+            const contactDiv = document.createElement(\"div\");
+        
+            contactDiv.classList.add(\"mailNphone\");
+            contactDiv.classList.add(\"fadeIn\");
+            contactDiv.innerHTML = htmlString;
+        
+            articleContact.appendChild(contactDiv);
+        }");
+
+    intersection_observer_js_file.write(b"function startObserver(faders){
+        const options = {
+            threshold: 0, 
+            rootMargin: \"0px 0px -100px 0px\"
+        }
+    
+    
+        const onScroll = new IntersectionObserver(
+            function(entries, onScroll){
+                entries.forEach(entry => {
+                    if(!entry.isIntersecting){
+                        return;
+                    }else{
+                        entry.target.classList.add(\"appear\");
+                        onScroll.unobserve(entry.target);
+                    }
+                });
+            }, options  
+        );
+    
+    
+        faders.forEach(fader => {
+            console.log(fader)
+            onScroll.observe(fader)
+        });
+    
+    }");       
+
+    portfolio_js_file.write(b"// Aquire data
+        async function getData(projectNum, bool = false){
+        
+            // Url Json file
+            let dataJsonUrl = \"../data.json\";
+        
+            const request =  await fetch(dataJsonUrl,);
+            const response = await request.json();
+        
+            var projectNumMax = 0;
+        
+            addMetaDescription(response[0].metaDescription);
+            
+        
+            document.querySelector(\":root\").style.setProperty(\"--mainColor\", response[0].mainColor);
+            document.querySelector(\":root\").style.setProperty(\"--secondaryColor\", response[0].secondaryColor);
+            document.querySelector(\":root\").style.setProperty(\"--accentColor\", response[0].accentColor);
+            document.querySelector(\":root\").style.setProperty(\"--backgroundColor\", response[0].backgroundColor);
+        
+        
+            let setLength = 10000;
+        
+            for(let i = 0; i <= setLength; i++){
+                if(!response[1][i]){
+                    projectNumMax = i-1; 
+                    break;
+                }
+            }
+        
+        
+        
+            let projectArr = [];
+            if(projectNum > projectNumMax){
+                projectNum = 0;
+            }
+            
+            if(projectNum < 0){
+                projectNum = projectNumMax;
+            }
+            var url = window.location.href;
+            let arrayUrl = url.split(\"/\");
+        
+            arrayUrl[arrayUrl.length-1] = \"\";
+        
+            let newURL = arrayUrl.join(\"/\")
+        
+            let param = new URLSearchParams();
+            param.append(\"project\", projectNum);
+        
+            if(bool == true){
+                window.location.href =  `${newURL}portfolio.html?${param}`; 
+            }
+            
+        
+        
+        
+            for (const value of Object.values(response[1][projectNum])) {
+                projectArr.push(value)
+            }
+        
+            addProject(projectArr[0], projectArr[1], projectArr[2]);
+            document.title = projectArr[0];
+        
+            // Adding Contacts
+            addMailNumberContacts(response[0].email, response[0].phoneNumber);
+        
+            // Adding Parent div for contacts
+            addContantDiv();
+        
+            let i = 0;
+            for (const [key, value] of Object.entries(response[4])) {
+                i += 1;
+                addContact(key, value);
+            }
+        
+            let contactContainer = document.querySelector(\".contactContainer\");
+            if(i % 3 == 0 || i > 7) {
+                contactContainer.style.gridTemplateColumns = \"1fr 1fr 1fr\";
+            }else{
+                contactContainer.style.gridTemplateColumns = \"1fr 1fr\";
+            }
+        
+        
+            console.log(response);
+        }
+        
+        var projectNum = window.location.search.replace(\"?project=\", \"\"); 
+        
+        getData(projectNum);
+        
+        /**
+         * @param {title of the Portfolio} title 
+         * @param {text of the Portfolio} text 
+         * @param {fotoUrl URL if the image} fotoUrl 
+         * @param {num of the Projects} num 
+         */
+        
+        function addProject(title, text, fotoUrl){
+            const articlePortfolio = document.querySelector(\".subPortfolio\");
+            
+            const htmlString = 
+            `
+                <div class=\"headPicture\">
+                    <img src=\"${fotoUrl}\"alt=\"${title}\" id=\"${title.replace(\" \", \"_\").replace(\"=\", \"_\")}\">
+                </div>
+                <div class=\"bannerArticle\">
+                    <h1 class=\"bannerHeadline\">
+                        ${title}
+                    </h1>
+        
+                    <!-- Text has to be limited to a certain amout of characters -->
+                    <p class=\"bannerText\">
+                        ${text}
+                    </p>
+                </div>
+            `;
+        
+            const bannerPortfolio = document.createElement(\"div\");
+        
+            bannerPortfolio.classList.add(\"subBannerPortfolio\");
+            bannerPortfolio.setAttribute(\"id\", title);
+            bannerPortfolio.innerHTML = htmlString;
+        
+        
+            articlePortfolio.appendChild(bannerPortfolio);
+        }
+        
+        
+        /**
+         * @param {title => means name of the brand as String} title 
+         * @param {link regarding the contact connection} link 
+         */
+        
+        function addContact(title, link){
+            const contactContainer = document.querySelector(\".contactContainer\");
+            
+            const htmlString = 
+            `
+                <a class=\"contactAnker\" href=\"${link}\">
+                    <img class=\"contactIMG\" src=\"img/${title}.png\" alt=\"${title}\"> 
+                </a>
+                <span class=\"contactSpan\"> ${title} </span>
+            `;
+        
+            const contactDiv = document.createElement(\"div\");
+        
+            contactDiv.classList.add(\"contact\");
+            contactDiv.setAttribute(\"id\", title);
+            contactDiv.innerHTML = htmlString;
+        
+            contactContainer.appendChild(contactDiv);
+        }
+        
+        function addContantDiv(){
+            let contactDiv = document.createElement(\"div\");
+            contactDiv.classList.add(\"contactContainer\");
+        
+            document.querySelector(\".articleContact\").appendChild(contactDiv)
+        }
+        
+        /**
+         * @param {email of the client} email 
+         * @param {number of the client} number 
+         */
+        
+        function addMailNumberContacts(email, number){
+            const articleContact = document.querySelector(\".articleContact\");
+            
+            const htmlString = 
+            `
+                <a class=\"contactEmail\" href=\"mailto: ${email}\">
+                    email: ${email}
+                </a>
+                <a class=\"contactPhone\" href=\"tel: ${number}\">
+                    phonenumber: ${number}
+                </a>
+            `;
+        
+            const contactDiv = document.createElement(\"div\");
+        
+            contactDiv.classList.add(\"mailNphone\");
+            contactDiv.innerHTML = htmlString;
+        
+            articleContact.appendChild(contactDiv);
+        }
+        
+        
+        function addMetaDescription(desc){
+            document.querySelector('meta[name=\"description\"]').setAttribute(\"content\", desc);
+        }");                                                      
+
+    responsive_fjs_file.write(b"const burger = document.querySelector('.burger');
+    const imageBurger = burger.querySelector('img');
+    const nav = document.querySelector('.sideUL');
+    const navLI = document.querySelectorAll('.sideUL li');
+    
+    const NavSilde = () => {
+        
+        burger.addEventListener('click', () =>{
+            //toggle NAV
+            nav.classList.toggle('nav-active');
+    
+    
+            //toggle Burger
+            imageBurger.classList.toggle('toggleImageBurger');
+            burger.classList.toggle('toggleBurger')       
+            
+          
+            //Animate Links
+            let filteredNavlist = Array.prototype.filter.call(navLI, f => !f.classList.contains('toggleDisplay'));  
+    
+            filteredNavlist.forEach((links, index) => {
+                if(links.style.animation){
+                    links.style.animation = '';
+                }else{
+                    links.style.animation = `navLinksFade 500ms ease forwards ${index / 9 + 0.5}s`;
+                }
+            });
+        });
+    
+    }
+    
+    NavSilde();
+    
+    function slideIn(){
+        nav.classList.toggle('nav-active');
+    
+            //toggle Burger
+            burger.classList.toggle('toggleBurger');
+    
+             //Animate Links
+            let filteredNavlist = Array.prototype.filter.call(navLI, f => !f.classList.contains('toggleDisplay')); 
+    
+             
+    
+            filteredNavlist.forEach((links, index) => {
+                if(links.style.animation){
+                    links.style.animation = '';
+                }else{
+                    links.style.animation = `navLinksFade 500ms ease forwards ${index / 9 + 0.5}s`;
+                }
+            }
+        );
+    }");    
 
     // html, css files
     let mut index_html_file = fs::File::create(directory_name.to_owned() + "/index.html").expect("creation failed");
@@ -808,7 +1378,7 @@ fn create_files(directory_name: &str){
         .articlePortfolio{
             grid-template-columns: 1fr;
         }
-    }")
+    }");
 
     // json file 
     let _data_json = fs::File::create("data.json").expect("creation failed");
