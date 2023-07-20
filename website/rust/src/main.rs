@@ -34,6 +34,13 @@ impl FotoFile {
     }
 }
 
+
+fn read_poll(){
+
+    const ACCESS_TOKEN: &str  = "";
+
+}
+
 // function to create the project files 
 // taking {directory_name as String} as an input
 fn create_files(directory_name: &str){
