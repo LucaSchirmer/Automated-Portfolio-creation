@@ -291,6 +291,10 @@ ul{
     font-size: 1.5rem;
 }
 
+.servicePicture img{
+    max-width: 20vw;
+}
+
 /* Clients Article*/
 
 .articleClients{
