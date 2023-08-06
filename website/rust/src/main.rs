@@ -6,6 +6,16 @@ use std::path::Path;
 use reqwest::blocking::Client;
 use zip::read::ZipArchive;
 
+// for google forms interaction
+use google_drive3::{
+    GoogleForms, DefaultError, DefaultTokenResponse, Result,
+    api::Form,
+    auth::GoogleAuthenticator,
+    types::{Date, DateTime, TimeOfDay},
+};
+use yup_oauth2::ServiceAccountAuthenticator;
+
+
 
 // main fn => calls programm
 fn main(){
