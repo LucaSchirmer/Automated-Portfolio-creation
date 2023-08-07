@@ -100,11 +100,37 @@ fn unzip_github_project(zip_file_path: &str, destination_folder_path: &str){
     drop(archive);
 }
 
-
+// https://console.cloud.google.com/iam-admin/serviceaccounts/details/105608323922078005684;edit=true?project=automated-portfolio-website&supportedpurview=project
+// https://docs.google.com/forms/d/1KH3U0O1x35ez4r35vAy_tZVr-7r624C8Y1B2_oWljrk/edit 
 
 fn read_poll(){
 
-    const ACCESS_TOKEN: &str  = "";
+    const ACCESS_TOKEN: &str  = "MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCsC9aZcQdjq2/7\nxkq2Qdj1+Sj+Bvgpw/7fKbTlFuQQHXRjHP90YNBx9Jxm5D/Xr9IM1adJGol0atdP\nj4eg6h8ighc9FlQ3atqx+f5Tp61eeORBi2C3QNH1qsA7ZnUouAzfyfOBdV4xUaig\nxHHx3jAMkqfpG2WqMiFomU/izlxLsGNajSnfzTt0+gO77ETzBYeieqnSoCiLD4ke\nPzkFB97qQt4/l59xcTjb0r81oTDGZnRG5yOzplcZ+188LaYu2hExA3/UdUqU4XnH\nl/69gfqwA0W+c/n0R+WuAb4WsKOg1PbJerFYEcoovy04krFmcIe7GQwiKYy4ivLs\npEwd5tNBAgMBAAECggEAA8rwBGpwOAOFwLZmm714X7XKME1th5gtRHSqKvm19d/8\nWpn/TKy8s6Jpl0AVYzcaSZOlMDCgUptvWy7mFcdLf+p/wiY9nYoiv5UsBOKXqRM/\nru04aNnKNyD4Q2b3Erp5+C3+yv4QIUS0U7T48RTNmN1by8EBnP6la2Wj0/NqJ/X2\nfDye1TS60H6E8f1ulvD/6I7Xi0SPTPf2ylJGwGT8MjKMZF+/6dHZs5pMnxYsk1LP\nKPKO9mARiZPPYnTJn3r7yGW3kA1+H+7rgpuLp715uToagpTx36Ttc8PErhXEDE3N\nDqbEMGMviiUM9kgxPGHailKvn+7Z694wZTuUiybEhQKBgQDaB80A6sa9SDOKFSPn\nJp87/EVqvQ67M8AoGywFHi36shJOL+Av9lOx1dyLjZYtnlwtfteWjXHmE/gNA+wF\n+aq4A6YvMDunitvcmYd2Gu2FmCealFzcZpm/JvpI/A4dtU3twGensP6rj2NkYbeN\nUgtXFRW5MOTqq6CmI4724h6aVQKBgQDKAfneTQj4T1uBZu0esh1oNiIXavT0DBbD\nnSH8Ru/CQS7oZ+8F8zSluvbqRjloguqbKylkrBz6lpXd47RjhA+3jcH3xovpZeOD\nqMLVCxnNQVoZKylUd7MBl8d0xpD1GLG4HGAZy1U5vVtpRe3JkKLd9N5BbGvzkJg2\neRW6GqLZPQKBgEloEPR7FziJQ5j87x6XGUuH7xM13ezXSp32MAb1F0Ptik46vj9H\nrvwT5fIyVFq9k4lZyFoO+0cceAphxKhqW7kiuWPv2FXbYZTPOBVikY/GH6dixjUK\ncj8yb1f9TP9hmIAwpHWIGOZIG42jfLoe4mSKW8sDFD+SUz88f5jNnsIVAoGAV9v0\nKVOoCxe43Nc/WpJtZ93jhfvm/h4j6IB3P5o6vWpMVJifxR66Tzq6GbrhTStjjol/\nP2H8WKEWHaPj2USe8V6edn3MbH78LU9BLhfd6P/7h+bV2v8UxCSXg5q5gWB0K3dr\n9MwTDUHmeCsJ+RkHPTI7WIknio/hJBAV+xOKsKECgYAyX1YSxh0RcabKoqB+WbEO\n8YjDMbVkeXPt346Xdu5pchcG3zPLfF0prDhjlpBiaTB1bfyvInLYbbO7J7kXuk3n\nI6XkbuJzw9ED34bfiyCB/hGA3xc3pIa4d1K/jNPU0CiiF7bxSGXP2Z/e+Eo3y5q4\nJNaimUE/2tNOnHip/RslJA==\n";
+
+    // Create a Service Account Authenticator
+    let auth = ServiceAccountAuthenticator::builder(ACCESS_TOKEN.to_vec())
+        .build()
+        .unwrap();
+
+    // Create a GoogleAuthenticator
+    let google_auth = GoogleAuthenticator::new(auth);
+
+    // Instantiate the GoogleForms client
+    let forms_client = GoogleForms::new(
+        hyper::Client::builder().build(hyper_tls::HttpsConnector::new()?),
+        google_auth,
+    );
+
+
+    // ID of the form i want to read from 
+    let form_id = "1KH3U0O1x35ez4r35vAy_tZVr-7r624C8Y1B2_oWljrk";
+
+    // Get the form responses
+    let response = forms_client.forms().get_responses(form_id)?.doit()?;
+    println!("{:?}", response);
+
+    Ok(())
+
 
 }
 
