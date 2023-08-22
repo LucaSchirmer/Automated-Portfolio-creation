@@ -38,7 +38,7 @@ class Form extends Component {
           <Input name="email" labelContent="Provide your Email:" type="email"/>
           <Input name="phoneNumber" labelContent="Provide your phone number:" type="number"/>
 
-          <Input name="colorBool" labelContent="Would you like to define colors for your Website?" type="number"/>   
+          <Input name="colorBool" labelContent="Would you like to define colors for your Website?" type="bool"/>   
 
 
 

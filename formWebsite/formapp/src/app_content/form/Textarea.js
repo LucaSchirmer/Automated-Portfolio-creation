@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Textarea = ({name,labelContent=name, required=false, type="text"}) => {
+const Textarea = ({name,labelContent=name, required=false}) => {
     const [value, setValue] = useState(''); 
 
     const handleInputChange = (event) => {
@@ -10,7 +10,7 @@ const Textarea = ({name,labelContent=name, required=false, type="text"}) => {
     }; 
 
     if(required){
-        labelContent = labelContent + '<span class="StartYellowSpan"> *</span>';
+         labelContent = labelContent + '<span class="StartYellowSpan"> <abbr title="Your response here is required.">*</abbr></span>';
     }
 
     return (
@@ -22,7 +22,6 @@ const Textarea = ({name,labelContent=name, required=false, type="text"}) => {
 
 
         <textarea
-            type={type}
             name={name}
             value={value} 
             onChange={handleInputChange}

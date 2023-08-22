@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import ColorPicker from './ColorPicker';
 
 
-const Textarea = ({name,labelContent=name, required=false, type="text"}) => {
+const Input = ({name,labelContent=name, required=false, type="text"}) => {
     const [value, setValue] = useState(''); // State for the textarea value
 
     const handleInputChange = (event) => {
@@ -11,7 +12,90 @@ const Textarea = ({name,labelContent=name, required=false, type="text"}) => {
     }; 
 
     if(required){
-        labelContent = labelContent + '<span class="StartYellowSpan"> *</span>';
+        labelContent = labelContent + '<span class="StartYellowSpan"> <abbr title="Your response here is required.">*</abbr></span>';
+    }
+
+
+    // logic to extend the content when the user wants to choose the colors
+    const [showInjectedContent, setShowInjectedContent] = useState(false);
+    const [isHighlightedYes, setIsHighlightedYes] = useState(false);
+    const [isHighlightedNo, setIsHighlightedNo] = useState(false);
+        
+    const handleColorSettingsInjectionClick = (event) => {
+        console.log(event.target);
+        if(event.target.classList[0] === "inputBoolFocused" && event.target.name === "Yes"){
+            setShowInjectedContent(false);
+            setIsHighlightedYes(!isHighlightedYes);
+            return;
+
+        }else{
+
+            if(isHighlightedYes){
+                setIsHighlightedYes(!isHighlightedYes);
+            }
+            if(isHighlightedNo){
+                setIsHighlightedNo(!isHighlightedNo);
+            }
+
+            
+
+            console.log(event.target.name)
+            if(event.target.name === "Yes"){
+                setShowInjectedContent(true);
+                setIsHighlightedYes(!isHighlightedYes);
+            }else{
+                setShowInjectedContent(false);
+                setIsHighlightedNo(!isHighlightedNo);
+            }
+        }
+    };
+
+    const highlightedClassYes =  isHighlightedYes  ? 'inputBoolFocused': '';
+    const highlightedClassNo =  isHighlightedNo  ? 'inputBoolFocused': '';
+
+
+    if(type === "bool"){
+        return (
+            <div className='ColorSetterrFormater'>
+                <div className="inputElement">
+                    <label 
+                        htmlFor={name} 
+                        dangerouslySetInnerHTML={{ __html: labelContent }}
+                    />
+                    <div className='yesNoButtonContainer'>
+                        <input
+                            className={highlightedClassYes}
+                            type="button"
+                            name="Yes"
+                            value="Yes"
+                            onClick={handleColorSettingsInjectionClick}
+                        />
+                        <input
+                            className={highlightedClassNo}
+                            type="button"
+                            name="No"
+                            value="No"
+                            onClick={handleColorSettingsInjectionClick}
+                        />
+                    </div>
+                </div>
+
+
+                {showInjectedContent && (
+                    // <Input name="mainColor" labelContent="Choose a main Color" type="color"/>
+                    <div className="inputElement">
+                        <label 
+                            htmlFor={name} 
+                            dangerouslySetInnerHTML={{ __html: labelContent }}
+                        />
+                        <div className='pickr'>
+                            <ColorPicker />
+                        </div>
+                    </div>
+
+                )}
+            </div>
+        );
     }
 
     return (
@@ -31,6 +115,6 @@ const Textarea = ({name,labelContent=name, required=false, type="text"}) => {
 }
 
 
-export default Textarea;
+export default Input;
 
 

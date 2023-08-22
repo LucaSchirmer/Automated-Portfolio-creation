@@ -52,8 +52,12 @@
 
 .StartYellowSpan{
   color: yellow;
-  font-weight: 500;
+  font-weight: 600;
   font-style: oblique;
+}
+
+.StartYellowSpan abbr{
+  text-decoration: none;
 }
 
 .requiredDisclaimer{
@@ -190,6 +194,25 @@
 
 .inputElement label{
   padding: 10px;
+}
+
+.yesNoButtonContainer{
+  display: flex; 
+  flex-direction: row;
+  justify-content: right;
+  gap: 5vh;
+  width: 100%;
+}
+
+.yesNoButtonContainer input{
+  min-width: 70px;
+  padding: 0px 10px 0px 10px;
+}
+
+.inputBoolFocused{
+  background-color: #ff9800;
+  border: #000 2px solid;
+  color: #111;
 }
 
 input, textarea{
