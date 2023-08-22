@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -6,6 +6,9 @@
   height: 40vmin;
   pointer-events: none;
 }
+
+
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -35,4 +38,170 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+
+*{
+  padding: 0;
+  margin: 0;
+
+  font-size: 16px;
+}
+
+/* Special Classes */
+
+.StartYellowSpan{
+  color: yellow;
+  font-weight: 500;
+  font-style: oblique;
+}
+
+.requiredDisclaimer{
+  background-color: #000;
+  color: white;
+
+  width: 10vw; 
+
+
+  position: absolute;
+  right: 0;
+
+  padding: 25px;
+
+  margin: 10px;
+  border-radius: 10%;
+}
+
+
+
+
+
+
+.mainForm{
+  display: flex; 
+  flex-direction: column;
+}
+
+.mainHeadline{
+  font-size: 3rem;
+  height: 100%;
+
+  color: white;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+/* nav */
+.appHeader{
+  width: 100%;
+  height: 12vh;
+
+
+  background: radial-gradient(circle at 0%, #000, 5%, #555, 50%, #555, 72.5%, #111, 100%, #000);
+
+  border-bottom: #000 2px solid;
+}
+
+.mainNav{
+  display: grid; 
+  grid-template-columns: 5fr 1fr;
+  height: inherit;
+}
+
+.mainNav ul{
+  display: flex; 
+  flex-direction: row;
+  justify-content: center;
+}
+
+.listItem{
+  list-style: none;
+  width: 50%;
+  text-align: center;
+  display: grid; 
+  align-content: center;
+  justify-content: center;
+}
+
+.listItem a {
+  text-decoration: none;
+  color: white !important;
+}
+
+.navIMG{
+  height: 5vh;
+}
+
+.listItem a img:hover {
+  border: #ff9800 2px solid;
+  border-radius: 100%;
+}
+
+/* Form */
+
+.mainForm{
+  background: radial-gradient(circle at center, #f0f0f0, #dcdcdc); 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  min-height: 100vh;
+
+  color: rgba(255, 255, 255, 0.9);
+
+  padding-top: 10vh;
+}
+
+.formContainer{
+  width: 60vw; 
+  padding-left: 20vw;
+
+  display: flex; 
+  flex-direction: column;
+
+  gap: 10vh;
+}
+
+
+/* for Textarea.js */
+.formElement{
+  display: grid; 
+  grid-template-rows: 1fr  2fr;
+  
+  background-color: #333;
+
+  min-height: 25vh;
+  border-radius: 2%;
+  padding: 5%;
+}
+
+/* for Inputs.js */
+.inputElement{
+  display: grid; 
+  grid-template-columns: auto  1fr;
+  
+  background-color: #333;
+  column-gap: 3vw;
+
+  border-radius: 2%;
+  padding: 5%;
+}
+
+.inputElement label{
+  padding: 10px;
+}
+
+input, textarea{
+  border: unset;
+  resize: none; 
+  vertical-align: top; 
+
+  padding: 10px;
+}
+
+textarea{
+  width: 80%;
+  margin-left: 10%;
+  height: 100%;
 }
