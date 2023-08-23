@@ -5,13 +5,15 @@ import { useEffect } from 'react';
 import Pickr from '@simonwep/pickr';
 import '@simonwep/pickr/dist/themes/classic.min.css';
 
-const ColorPicker = () => {
+const ColorPicker = ({name}) => {
 
-
+  console.log(name)
   useEffect(() => {
     // Create an instance of Pickr
+    console.log(document.querySelector(`.${name}`));
+
     const pickr = Pickr.create({
-        el: ".pickr",
+        el: `.pickr-${name}`,
         theme: 'classic', // Choose a theme (classic, monolith, nano)
         default: '#ffffff', // Initial color
         swatches: [
@@ -54,7 +56,8 @@ const ColorPicker = () => {
     return () => {
       pickr.destroy(); // Clean up on component unmount
     };
-  }, []);
+  }, [name]);
+
 
 };
 

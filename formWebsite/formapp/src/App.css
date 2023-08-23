@@ -209,6 +209,36 @@
   padding: 0px 10px 0px 10px;
 }
 
+.ColorSetterrFormater{
+  display: grid;
+  grid-template-columns: auto repeat(1fr, 3);
+  gap: 10vh;
+}
+
+.colorInputParent{
+  display: grid; 
+  grid-template-columns: 1fr 1fr ;
+}
+
+.inputElementColor{
+  display: grid; 
+  
+  background-color: #333;
+  column-gap: 3vw;
+
+  border-radius: 2%;
+  padding: 5%;
+
+  width: 33%;
+}
+
+.pickr{
+  display: grid; 
+  align-content: center;
+  justify-content: center;
+}
+
+
 .inputBoolFocused{
   background-color: #ff9800;
   border: #000 2px solid;

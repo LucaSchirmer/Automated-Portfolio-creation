@@ -50,10 +50,20 @@ const Input = ({name,labelContent=name, required=false, type="text"}) => {
         }
     };
 
+    const parseCamelCase = (el)=>{
+        //  parses camelCase into first word  ( from firstWord )
+        el = el.split("C");
+        el = el[0];
+        el += " color";
+
+        return el
+    }
+
     const highlightedClassYes =  isHighlightedYes  ? 'inputBoolFocused': '';
     const highlightedClassNo =  isHighlightedNo  ? 'inputBoolFocused': '';
 
-
+    const colorVarOptions = ["mainColor", "secondaryColor", "accentColor", "backgroundColor"];
+    
     if(type === "bool"){
         return (
             <div className='ColorSetterrFormater'>
@@ -80,19 +90,22 @@ const Input = ({name,labelContent=name, required=false, type="text"}) => {
                     </div>
                 </div>
 
-
+                
+                {/* bug => ColorPicker can't find its parent */}
                 {showInjectedContent && (
-                    // <Input name="mainColor" labelContent="Choose a main Color" type="color"/>
-                    <div className="inputElement">
-                        <label 
-                            htmlFor={name} 
-                            dangerouslySetInnerHTML={{ __html: labelContent }}
-                        />
-                        <div className='pickr'>
-                            <ColorPicker />
-                        </div>
+                    <div className="colorInputParent">
+                        {[...Array(colorVarOptions.length)].map((_, index) => (
+                            <div className="inputElementColor" key={index}>
+                                <label
+                                    htmlFor={colorVarOptions[index]}
+                                    dangerouslySetInnerHTML={{ __html: `Choose a ${parseCamelCase(colorVarOptions[index])}` }}
+                                />
+                                <div className={`pickr-${colorVarOptions[index]}`}>
+                                    <ColorPicker name={name}/>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-
                 )}
             </div>
         );
