@@ -10,7 +10,7 @@ const ColorPicker = ({name}) => {
   console.log(name)
   useEffect(() => {
     // Create an instance of Pickr
-    console.log(document.querySelector(`.${name}`));
+    console.log(document.querySelector(`.pickr-${name}`));
 
     const pickr = Pickr.create({
         el: `.pickr-${name}`,

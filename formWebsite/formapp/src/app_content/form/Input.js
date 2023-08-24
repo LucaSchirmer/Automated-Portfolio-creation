@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import ColorPicker from './ColorPicker';
-
+import ColorInput from "./ColorInput";
 
 const Input = ({name,labelContent=name, required=false, type="text"}) => {
     const [value, setValue] = useState(''); // State for the textarea value
@@ -101,7 +100,7 @@ const Input = ({name,labelContent=name, required=false, type="text"}) => {
                                     dangerouslySetInnerHTML={{ __html: `Choose a ${parseCamelCase(colorVarOptions[index])}` }}
                                 />
                                 <div className={`pickr-${colorVarOptions[index]}`}>
-                                    <ColorPicker name={name}/>
+                                    <ColorInput colorTag={colorVarOptions[index]}/>
                                 </div>
                             </div>
                         ))}
