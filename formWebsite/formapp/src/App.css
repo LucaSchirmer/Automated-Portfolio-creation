@@ -217,25 +217,19 @@
 
 .colorInputParent{
   display: grid; 
-  grid-template-columns: 1fr 1fr ;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 5%;
 }
 
 .inputElementColor{
   display: grid; 
-  
+  grid-template-columns: 1fr 1fr;
   background-color: #333;
-  column-gap: 3vw;
 
   border-radius: 2%;
   padding: 5%;
 
-  width: 33%;
-}
-
-.pickr{
-  display: grid; 
-  align-content: center;
-  justify-content: center;
 }
 
 
