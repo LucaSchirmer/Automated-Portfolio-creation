@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Textarea from './Textarea.js';
 import Input from './Input.js';
+import Projects from './Projects.js';
 
 
 
@@ -41,7 +42,7 @@ class Form extends Component {
           <Input name="colorBool" labelContent="Would you like to define colors for your Website?" type="bool"/>   
 
 
-
+          <Projects/>
           <button type="submit">Submit</button>
         </div>
       </form>
