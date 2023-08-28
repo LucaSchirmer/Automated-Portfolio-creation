@@ -16,6 +16,7 @@ const Textarea = ({name,labelContent=name, required=false}) => {
     return (
     <div className="formElement">
         <label 
+            className="inputTextAreaLabel"
             htmlFor={name} 
             dangerouslySetInnerHTML={{ __html: labelContent }}
         />

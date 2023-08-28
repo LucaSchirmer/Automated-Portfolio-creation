@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 
-const Input = ({ name, labelContent = name, required = false, type = "text" }) => {
+const Input = ({ name, labelContent = name, required = false, type = "text"}) => {
   const [value, setValue] = useState(''); // State for the textarea value
 
   const handleInputChange = (event) => {
@@ -69,6 +69,7 @@ const Input = ({ name, labelContent = name, required = false, type = "text" }) =
       <div className='ColorSetterrFormater'>
         <div className="inputElement">
           <label 
+            className="inputTextAreaLabel"
             htmlFor={name} 
             dangerouslySetInnerHTML={{ __html: labelContent }}
           />
@@ -95,6 +96,7 @@ const Input = ({ name, labelContent = name, required = false, type = "text" }) =
             {colors.map((color, index) => (
               <div className="inputElementColor" key={index}>
                 <label
+                  className="inputTextAreaLabel"
                   htmlFor={colorVarOptions[index]}
                   dangerouslySetInnerHTML={{ __html: `Choose a ${parseCamelCase(colorVarOptions[index])}:` }}
                 />
@@ -117,6 +119,7 @@ const Input = ({ name, labelContent = name, required = false, type = "text" }) =
   return (
     <div className="inputElement">
       <label 
+        className="inputTextAreaLabel"
         htmlFor={name} 
         dangerouslySetInnerHTML={{ __html: labelContent }}
       />

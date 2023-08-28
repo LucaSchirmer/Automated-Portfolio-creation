@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 
-const DragNDrop = () => {
+const DragNDrop = ({ maxAmount = 50 }) => {
     const [isDraggingOver, setIsDraggingOver] = useState(false);
     const [images, setImages] = useState([]);
-
 
     const handleDrop = (event) => {
         event.preventDefault();
@@ -15,8 +14,10 @@ const DragNDrop = () => {
 
         const imageUrls = imageFiles.map(file => URL.createObjectURL(file));
 
-        setImages(prevImages => [...prevImages, ...imageUrls]);
-    };    
+        if (images.length + imageUrls.length <= maxAmount) {
+            setImages(prevImages => [...prevImages, ...imageUrls]);
+        }
+    };
 
     const handlechangeAfterOnclick = async (event) => {
         const fileInput = event.target;
@@ -28,7 +29,9 @@ const DragNDrop = () => {
 
             const imageUrls = await Promise.all(imageFiles.map(file => URL.createObjectURL(file)));
 
-            setImages(prevImages => [...prevImages, ...imageUrls]);
+            if (images.length + imageUrls.length <= maxAmount) {
+                setImages(prevImages => [...prevImages, ...imageUrls]);
+            }
         }
     };
 
@@ -41,16 +44,15 @@ const DragNDrop = () => {
         event.preventDefault();
 
         setIsDraggingOver(true);
-        console.log(isDraggingOver)
     };
 
     const handleDragLeave = () => {
         setIsDraggingOver(false);
-        console.log(isDraggingOver)
     };
+
     return (
-        <div className="dragNdrop"> 
-            <div 
+        <div className="dragNdrop">
+            <div
                 className={`dropArea ${isDraggingOver ? 'draggingOver' : ''}`}
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}
@@ -66,7 +68,7 @@ const DragNDrop = () => {
             <div className="imageList">
                 {images.map((imageUrl, index) => (
                     <div key={index} className="imageContainer">
-                        <div className="removeIMG"  onClick={() => handleRemoveImage(index)}>X</div>
+                        <div className="removeIMG" onClick={() => handleRemoveImage(index)}>X</div>
                         <img src={imageUrl} alt={`${index}`} />
                     </div>
                 ))}
@@ -74,6 +76,5 @@ const DragNDrop = () => {
         </div>
     );
 }
-
 
 export default DragNDrop;
