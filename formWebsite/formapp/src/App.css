@@ -153,6 +153,57 @@
   border-radius: 100%;
 }
 
+/* sideNav */
+
+.sideNav{
+  position: fixed;
+  z-index: 1000;
+  margin-top: -8.5vh;
+  height: 80vh;
+  display: flex; 
+  flex-direction: column;
+}
+
+.sideNavHeadline{
+  padding-left: 5vw;
+
+  font-size: 2rem;
+  text-shadow: #000 -1px 2px;
+  color: rgb(0, 135, 255);
+
+  letter-spacing: 2px;
+}
+
+.sideNavUl{
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  padding-left: 5vw;
+}
+
+.sideNavUl li{
+  list-style: none;
+}
+
+.sideNavUl li a{
+  text-decoration: none;
+
+  display: block;
+  transition: color 0.3s;
+  text-shadow: #000000 -1px 1px;
+  letter-spacing: 2px;
+
+  font-size: 1.5rem;
+
+  color: rgb(15, 15, 169);
+}
+
+.sideNavUl li a:hover {
+  color: #ff9800;
+}
+
+
 /* Form */
 
 .mainForm{
@@ -267,7 +318,7 @@ textarea{
   height: 100%;
 }
 
-.projectContainter, .serviceContainter{
+.projectContainter, .serviceContainter, .customerContainter{
   display: flex; 
   flex-direction: column;
 
@@ -281,6 +332,19 @@ textarea{
 
   letter-spacing: 3px;
   text-shadow: #353535a5 3px 3px;
+}
+
+.submitButtonMainForm{
+  margin-bottom: 10vh;
+
+  padding: 2%;
+  width: 50%;
+  margin-left: 25%;
+
+  font-size: 1.25rem;
+  font-weight: 600;
+
+  letter-spacing: 2px;
 }
 
 /* DRAG AND DROP */
@@ -349,4 +413,56 @@ textarea{
 
 .FileInputDragNDrop{
   display: none;
+}
+
+/* Footer */
+
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 20px 0;
+}
+
+.footerContent {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footerLogo img {
+  max-width: 100px;
+}
+
+.footerNav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerNav li {
+  margin-bottom: 10px;
+}
+
+.footerNav a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footerNav a:hover {
+  color: #ff9800;
+}
+
+.footerBottom {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.footerBottom p {
+  font-size: 14px;
+
+  color: #eee;
 }

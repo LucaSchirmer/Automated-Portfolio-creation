@@ -73,7 +73,7 @@ const DragNDrop = ({ name, maxAmount = 1, allowMultiple=false }) => {
         
         <div className="dragNdrop">
             <p className="dragNdropP"> 
-                Choose a Image for your {name}
+                Choose a image for your {name}
                 <br/>    
                 <span className={(imgCount === maxAmount) ? "colorRed": ""}>
                     You have uploaded {imgCount} of the maximum amount of {maxAmount} 
