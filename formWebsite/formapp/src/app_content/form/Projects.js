@@ -10,7 +10,7 @@ const Projects = () => {
 
         <Input name="titleProject" labelContent="Title of your Project:"/>
         <Textarea name="projectText" labelContent="Write a text about you Project:"/>
-        <DragnDrop/>   
+        <DragnDrop name="service"/>   
         
     </div>
     );
