@@ -29,13 +29,14 @@ const DragNDrop = ({ name, maxAmount = 1, allowMultiple=false, className={} }) =
         setImages(newImages);
     };
 
-    const handlechangeAfterOnclick = async (event) => {
+    const handlechangeAfterOnclick = (event) => {
         const fileInput = event.target;
 
+        console.log(fileInput)
         if (fileInput.files && fileInput.files.length > 0) {
             const droppedFiles = Array.from(fileInput.files);
             const imageFiles = droppedFiles.filter(file => file.type.startsWith('image/'));
-            const imageUrls = await Promise.all(imageFiles.map(file => URL.createObjectURL(file)));
+            const imageUrls = imageFiles.map(file => URL.createObjectURL(file));
 
             let newImages = [...images, ...imageUrls];
 
@@ -80,7 +81,7 @@ const DragNDrop = ({ name, maxAmount = 1, allowMultiple=false, className={} }) =
                 </span>
             </p>
             <div
-                className={`dropArea ${isDraggingOver ? 'draggingOver' : ''}`}
+                className={`dropArea${isDraggingOver ? ' draggingOver' : ''}`}
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
@@ -102,7 +103,7 @@ const DragNDrop = ({ name, maxAmount = 1, allowMultiple=false, className={} }) =
             </div>
             <div className="imageList">
                 {images.map((imageUrl, index) => (
-                    <div key={index} className={`imageContainer ${className + index}`} >
+                    <div className={`imageContainer ${className + index}`} >
                         <div className="removeIMG" onClick={() => handleRemoveImage(index)}>X</div>
                         <img className={className} src={imageUrl} alt={`${index}`} />
                     </div>
