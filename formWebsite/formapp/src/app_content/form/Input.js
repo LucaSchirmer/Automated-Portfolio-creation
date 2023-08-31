@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 
-const Input = ({ name, labelContent = name, required = false, type = "text"}) => {
+const Input = ({ name, labelContent = name, required = false, type = "text", className}) => {
   const [value, setValue] = useState(''); // State for the textarea value
 
   const handleInputChange = (event) => {
@@ -128,6 +128,7 @@ const Input = ({ name, labelContent = name, required = false, type = "text"}) =>
         name={name}
         value={value}
         onChange={handleInputChange}
+        className={className}
       />
     </div>
   );

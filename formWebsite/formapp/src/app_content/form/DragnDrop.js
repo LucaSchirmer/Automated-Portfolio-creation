@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const DragNDrop = ({ name, maxAmount = 1, allowMultiple=false }) => {
+const DragNDrop = ({ name, maxAmount = 1, allowMultiple=false, className={} }) => {
     const [isDraggingOver, setIsDraggingOver] = useState(false);
     const [images, setImages] = useState([]);
     const [imgCount, setImgCount] = useState(0);
@@ -65,7 +65,7 @@ const DragNDrop = ({ name, maxAmount = 1, allowMultiple=false }) => {
     };
 
     const handleDropAreaClickForInput = () =>{
-         document.querySelector(".FileInputDragNDrop").click();
+        document.querySelector(".FileInputDragNDrop").click();
     }
        
 
@@ -102,9 +102,9 @@ const DragNDrop = ({ name, maxAmount = 1, allowMultiple=false }) => {
             </div>
             <div className="imageList">
                 {images.map((imageUrl, index) => (
-                    <div key={index} className="imageContainer">
+                    <div key={index} className={`imageContainer ${className + index}`} >
                         <div className="removeIMG" onClick={() => handleRemoveImage(index)}>X</div>
-                        <img src={imageUrl} alt={`${index}`} />
+                        <img className={className} src={imageUrl} alt={`${index}`} />
                     </div>
                 ))}
             </div>

@@ -86,7 +86,7 @@ class Form extends Component {
     }
 
     for (let i = 0; i < parseInt(this.state.amoutOfCustomers); i++) {
-      customers.push(<Customer key={i} index={i} />);
+      customers.push(<Customer key={i} index={i} className={`customerClassNameSorting${i}`}/>);
     }
     return customers;
   }
