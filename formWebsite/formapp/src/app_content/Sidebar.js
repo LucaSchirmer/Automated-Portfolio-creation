@@ -1,6 +1,6 @@
 function Sidebar() {
   return (
-    <sidenav className="sideNav"> 
+    <aside className="sideNav"> 
         <h3 className="sideNavHeadline">
             Structure
         </h3>
@@ -26,8 +26,14 @@ function Sidebar() {
                     Customer
                 </a>
             </li>
+            <li>
+                <a href="#SocialMediaID">
+                    Social Media
+                </a>
+            </li>
+
         </ul>
-    </sidenav>
+    </aside>
   );
 }
 

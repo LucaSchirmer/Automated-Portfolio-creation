@@ -10,9 +10,9 @@ function Footer() {
             </div>
             <div className="footerLinks">
                 <ul className="footerNav">
-                    <li><a href="/">Impressum</a></li>
-                    <li><a href="Datenschutzerklärung">Datenschutzerklärung</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                    <li><a target="_blank" href="/Impressum">Impressum</a></li>
+                    <li><a target="_blank" href="/Datenschutz">Datenschutzerklärung</a></li>
+                    <li><a target="_blank" href="/Contact">Contact</a></li>
                 </ul>
             </div>
         </div>

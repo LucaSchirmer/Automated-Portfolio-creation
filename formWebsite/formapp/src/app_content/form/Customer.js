@@ -8,7 +8,7 @@ const Customer = () => {
     <div className="customerContainter">
 
         <Input name="customerTitle" labelContent="Name of your customer:"/>
-        <DragnDrop name="customer (e.g. Logo)"/>   
+        <DragnDrop name="of your customer (e.g. Logo)"/>   
         
     </div>
     );

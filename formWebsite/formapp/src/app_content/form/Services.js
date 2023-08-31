@@ -10,7 +10,7 @@ const Services = () => {
 
         <Input name="serviceTitle" labelContent="Title of your Service:"/>
         <Textarea name="serviceText" labelContent="Write a text about your Service:"/>
-        <DragnDrop name="service"/>   
+        <DragnDrop name="for your service"/>   
         
     </div>
     );

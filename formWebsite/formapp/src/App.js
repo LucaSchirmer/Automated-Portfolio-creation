@@ -1,29 +1,20 @@
-import './App.css';
 import React from 'react';
-import Header from './app_content/Header.js';
-import Form from './app_content/form/MainForm.js';
-import Sidebar from './app_content/Sidebar.js';
-import Footer from './app_content/Footer.js';
-
+import { BrowserRouter as Router, Route,  Routes} from 'react-router-dom';
+import Impressum from './app_content/footer_content/Impressum.js'
+import Datenschutz from './app_content/footer_content/Datenschutz.js'
+import Contact from './app_content/footer_content/Contact.js'
+import Home from "./Home.js"
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Sidebar />
-      <main 
-        className='main'
-      >
-
-        <div className='requiredDisclaimer'>
-          Questions marked with a (<span className="StartYellowSpan"> * </span>) necessitate a response.
-        </div>
-
-
-        <Form />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} /> 
+        <Route path="/Impressum" element={<Impressum/>} /> 
+        <Route path="/Datenschutz" element={<Datenschutz/>} /> 
+        <Route path="/Contact" element={<Contact/>} /> 
+      </Routes>
+    </Router>
   );
 }
 

@@ -5,6 +5,8 @@ import NumberInput from './NumberInput.js';
 import Services from './Services.js';
 import Projects from './Projects.js';
 import Customer from './Customer.js';
+import DragNDrop from './DragnDrop.js';
+import SocialMedia from './SocialMedia.js';
 
 
 
@@ -26,7 +28,7 @@ class Form extends Component {
       metaDescription: 'Buy Number Stickers which i produce for u in person',
       amoutOfProjects: 0,
       amoutOfServices: 0,
-      amoutOfCustomers: 0
+      amoutOfCustomers: 0,
     };
   }
 
@@ -45,6 +47,12 @@ class Form extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log('Form submitted:', this.state);
+
+    let inputs = document.querySelectorAll("input");
+    let textareas = document.querySelectorAll("textarea");
+
+    
+
   };
 
   renderProjects = () => {
@@ -91,8 +99,11 @@ class Form extends Component {
           <h2 className="subFormHeading" id="GeneralID">
             General
           </h2>
-          <Textarea name="title" labelContent="Name / Firmenname:" required="true"/>
+          <Input name="title" labelContent="Name / Company name:" required="true"/>
           <Textarea name="aboutText" labelContent="Introduction Text about:" required="true"/>
+          <DragNDrop name="of you or your team"/>
+          <DragNDrop name="to represent your Logo"/>
+
           <Input name="email" labelContent="Provide your Email:" type="email"/>
           <Input name="phoneNumber" labelContent="Provide your phone number:" type="number"/>
 
@@ -124,6 +135,13 @@ class Form extends Component {
 
           {/* Services render by Number of prior input */}
           {(this.renderCustomers())}
+
+          <h2 className="subFormHeading" id="SocialMediaID">
+            Social Media
+          </h2> 
+
+          <SocialMedia changeSocialMedia={this.changeSocialMedia}/>
+
 
           <button className="submitButtonMainForm" type="submit">Submit</button>
         </div>

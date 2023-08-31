@@ -43,7 +43,7 @@
     },
     {
         "0": {
-            "name": "BMW ",
+            "name": "BMW",
             "foto": "bmw.photoUrl"
         },
         "1": {
@@ -52,7 +52,6 @@
         }
     },
     {
-        
         "facebook": "facebook/mySite.de",
         "linkedin": "linkedin/mdfmdf",
         "pinterest": "pinterrest.com "
