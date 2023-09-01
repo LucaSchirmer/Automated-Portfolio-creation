@@ -101,8 +101,8 @@ class Form extends Component {
           </h2>
           <Input name="title" labelContent="Name / Company name:" required="true"/>
           <Textarea name="aboutText" labelContent="Introduction Text about:" required="true"/>
-          <DragNDrop name="of you or your team"/>
-          <DragNDrop name="to represent your Logo"/>
+          <DragNDrop name="of you or your team" className={"mainIMG"}/>
+          <DragNDrop name="to represent your Logo" className={"logoIMG"}/>
 
           <Input name="email" labelContent="Provide your Email:" type="email"/>
           <Input name="phoneNumber" labelContent="Provide your phone number:" type="number"/>

@@ -32,6 +32,7 @@ const DragNDrop = ({ name, maxAmount = 1, allowMultiple=false, className={} }) =
     const handlechangeAfterOnclick = (event) => {
         const fileInput = event.target;
 
+
         console.log(fileInput)
         if (fileInput.files && fileInput.files.length > 0) {
             const droppedFiles = Array.from(fileInput.files);
@@ -66,13 +67,13 @@ const DragNDrop = ({ name, maxAmount = 1, allowMultiple=false, className={} }) =
     };
 
     const handleDropAreaClickForInput = () =>{
-        document.querySelector(".FileInputDragNDrop").click();
+        document.querySelector(`.${className}INPUT`).click();
     }
        
 
     return (
         
-        <div className="dragNdrop">
+        <div className={`${className} dragNdrop`}>
             <p className="dragNdropP"> 
                 Choose a image {name}
                 <br/>    
@@ -97,7 +98,7 @@ const DragNDrop = ({ name, maxAmount = 1, allowMultiple=false, className={} }) =
             <input
                 onChange={handlechangeAfterOnclick}
                 type="file"
-                className='FileInputDragNDrop'
+                className={`FileInputDragNDrop ${className}INPUT`}
                 multiple={allowMultiple}
             />
             </div>
