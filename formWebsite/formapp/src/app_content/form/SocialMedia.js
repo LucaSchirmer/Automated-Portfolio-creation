@@ -8,38 +8,38 @@ const SocialMedia = () => {
       <p className="socialMediaP">Which social media platforms would you like to incorporate into your website?</p>
       
       <CheckBoxInput
-        name="LinkedIn"
+        name="linkedIn"
         labelContent="LinkedIn: "
 
       />
 
       <CheckBoxInput
-        name="Instagram"
+        name="instagram"
         labelContent="Instagram: "
       />
 
       <CheckBoxInput
-        name="Facebook"
+        name="facebook"
         labelContent="Facebook: "
       />
 
       <CheckBoxInput
-        name="Youtube"
+        name="youtube"
         labelContent="Youtube: "
       />
 
       <CheckBoxInput
-        name="Pinterest"
+        name="pinterest"
         labelContent="Pinterest: "
       />
 
       <CheckBoxInput
-        name="Github"
+        name="github"
         labelContent="Github: "
       />
 
       <CheckBoxInput
-        name="Twitter"
+        name="twitter"
         labelContent="Twitter: "    
       />
     </div>

@@ -16,12 +16,18 @@ const NumberInput = ({ name, labelContent = name, type = "number", required="tru
                 dangerouslySetInnerHTML={{ __html: labelContent}}
             />
             <input
+                className="numberInputs"
+
                 name="amoutOfProjects" 
                 type={type}
                 min={0} 
                 max={20}
                 value={num}
                 onChange={(event) =>{
+
+                    if(event.target.value > 20){
+                       event.target.value = 20;
+                    }
                     changeState(event.target.value);
                     setNum(event.target.value);
                 }}

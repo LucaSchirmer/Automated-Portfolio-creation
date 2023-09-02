@@ -104,9 +104,9 @@ const DragNDrop = ({ name, maxAmount = 1, allowMultiple=false, className={} }) =
             </div>
             <div className="imageList">
                 {images.map((imageUrl, index) => (
-                    <div className={`imageContainer ${className + index}`} >
+                    <div className={`imageContainer ${className}`} >
                         <div className="removeIMG" onClick={() => handleRemoveImage(index)}>X</div>
-                        <img className={className} src={imageUrl} alt={`${index}`} />
+                        <img className={className} src={imageUrl} alt={`${className}`} />
                     </div>
                 ))}
             </div>

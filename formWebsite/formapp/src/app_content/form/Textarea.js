@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Textarea = ({name,labelContent=name, required=false}) => {
+const Textarea = ({name,labelContent=name, required=false, className}) => {
     const [value, setValue] = useState(''); 
 
     const handleInputChange = (event) => {
@@ -26,6 +26,7 @@ const Textarea = ({name,labelContent=name, required=false}) => {
             name={name}
             value={value} 
             onChange={handleInputChange}
+            className={className}
         />
 
     </div>

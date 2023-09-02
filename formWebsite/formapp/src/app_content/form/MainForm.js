@@ -9,7 +9,6 @@ import DragNDrop from './DragnDrop.js';
 import SocialMedia from './SocialMedia.js';
 
 
-
 class Form extends Component {
 
   constructor(props) {
@@ -45,13 +44,92 @@ class Form extends Component {
   }
 
   handleSubmit = (event) => {
+    let jsonContent = {
+      general: {},
+      colors: {},
+      projects: {},
+      services: {},
+      customers: {},
+      socialMedia: {}
+    }
+
     event.preventDefault();
     console.log('Form submitted:', this.state);
 
     let inputs = document.querySelectorAll("input");
-    let textareas = document.querySelectorAll("textarea");
 
+
+    // general
+    let aboutText = document.querySelector(".generalClassSortingTextArea");
+    let aboutFoto = document.querySelector(".mainIMG img");
+    let logo = document.querySelector(".logoIMG img");
+
+    jsonContent.general["aboutText"] = aboutText.value;
+    jsonContent.general["aboutFoto"] = aboutFoto.src;
+    jsonContent.general["logo"] = logo.src;
     
+    inputs.forEach(input =>{
+      console.log(input)
+
+      // general setup
+      if(input.classList.contains("generalClassSorting")){
+        jsonContent.general[input.name] = input.value;
+      }
+
+      // colors setup 
+      if(input.classList.contains("inputBoolFocused") && input.value === "Yes"){
+
+        let colorSpans = document.querySelectorAll(".colorPickerSpanSorting");
+
+        jsonContent.colors["mainColor"] = colorSpans[0].innerHTML;
+        jsonContent.colors["secondaryColor"] = colorSpans[1].innerHTML;
+        jsonContent.colors["accentColor"] = colorSpans[2].innerHTML;
+        jsonContent.colors["backgroundColor"] = colorSpans[3].innerHTML;
+      }
+
+      if(input.classList.contains("socialMediaSorting")){
+        jsonContent.socialMedia[input.name] = input.value;
+      }
+    });
+
+    // projects set up 
+    if(this.state.amoutOfProjects > 0){
+      for(let index = 0; index <  this.state.amoutOfProjects; index++){
+        let project = document.querySelectorAll(`.projectsClassNameSorting${index}`)
+        jsonContent.projects[index] = {
+          "title": project[0].value,
+          "text": project[1].value,
+          "foto": project[4].src
+        }
+      }
+    }
+
+    // services set up 
+    if(this.state.amoutOfServices > 0){
+      for(let index = 0; index <  this.state.amoutOfServices; index++){
+        let service = document.querySelectorAll(`.servicesClassNameSorting${index}`)
+        jsonContent.services[index] = {
+          "title": service[0].value,
+          "text": service[1].value,
+          "foto": service[4].src
+        }
+      }
+    }
+
+    // customers set up 
+    if(this.state.amoutOfCustomers > 0){
+      for(let index = 0; index <  this.state.amoutOfCustomers; index++){
+        let customer = document.querySelectorAll(`.customersClassNameSorting${index}`)
+        jsonContent.customers[index] = {
+          "title": customer[0].value,
+          "foto": customer[3].src
+        }
+      }
+    }
+
+
+
+    console.log(jsonContent)
 
   };
 
@@ -62,7 +140,7 @@ class Form extends Component {
     }
 
     for (let i = 0; i < parseInt(this.state.amoutOfProjects); i++) {
-      projects.push(<Projects key={i} index={i} />);
+      projects.push(<Projects key={`project_${i}`} className={`projectsClassNameSorting${i}`}/>);
     }
     return projects;
   }
@@ -74,7 +152,7 @@ class Form extends Component {
     }
 
     for (let i = 0; i < parseInt(this.state.amoutOfServices); i++) {
-      services.push(<Services key={i} index={i} />);
+      services.push(<Services key={`service_${i}`} index={i} className={`servicesClassNameSorting${i}`}/>);
     }
     return services;
   }
@@ -86,7 +164,7 @@ class Form extends Component {
     }
 
     for (let i = 0; i < parseInt(this.state.amoutOfCustomers); i++) {
-      customers.push(<Customer key={i} index={i} className={`customerClassNameSorting${i}`}/>);
+      customers.push(<Customer key={`customer_${i}`} index={i} className={`customersClassNameSorting${i}`}/>);
     }
     return customers;
   }
@@ -99,13 +177,13 @@ class Form extends Component {
           <h2 className="subFormHeading" id="GeneralID">
             General
           </h2>
-          <Input name="title" labelContent="Name / Company name:" required="true"/>
-          <Textarea name="aboutText" labelContent="Introduction Text about:" required="true"/>
-          <DragNDrop name="of you or your team" className={"mainIMG"}/>
-          <DragNDrop name="to represent your Logo" className={"logoIMG"}/>
+          <Input name="title" labelContent="Name / Company name:" required="true" className={"generalClassSorting"}/>
+          <Textarea name="aboutText" labelContent="Introduction Text about:" required="true" className={"generalClassSortingTextArea"}/>
+          <DragNDrop key="general_1" name="of you or your team" className={"mainIMG"}/>
+          <DragNDrop key="general_2" name="to represent your Logo" className={"logoIMG"}/>
 
-          <Input name="email" labelContent="Provide your Email:" type="email"/>
-          <Input name="phoneNumber" labelContent="Provide your phone number:" type="number"/>
+          <Input name="email" labelContent="Provide your Email:" type="email" className={"generalClassSorting"}/>
+          <Input name="phoneNumber" labelContent="Provide your phone number:" type="number" className={"generalClassSorting"}/>
 
           <h2 className="subFormHeading" id="ColorsID">
             Colors

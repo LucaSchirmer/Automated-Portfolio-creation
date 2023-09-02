@@ -16,12 +16,12 @@ const CheckBoxInput = ({ name, labelContent = name}) => {
           placeholder="https://example.com"
           onChange={(event) => setUrlValue(event.target.value)}
           value={urlValue}
-          className="checkBoxInput"
+          className="checkBoxInput socialMediaSorting"
         />
       )}
       <input
         type="checkbox"
-        name={name}
+        name={`${name}Checkbox`}
         onChange={(event) => {
             setBool(event.target.checked);
         }}

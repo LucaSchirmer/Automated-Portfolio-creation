@@ -75,14 +75,14 @@ const Input = ({ name, labelContent = name, required = false, type = "text", cla
           />
           <div className='yesNoButtonContainer'>
             <input
-              className={highlightedClassYes}
+              className={`colorBoolInput ${highlightedClassYes}`}
               type="button"
               name="Yes"
               value="Yes"
               onClick={handleColorSettingsInjectionClick}
             />
             <input
-              className={highlightedClassNo}
+              className={`colorBoolInput ${highlightedClassNo}`}
               type="button"
               name="No"
               value="No"
@@ -106,7 +106,7 @@ const Input = ({ name, labelContent = name, required = false, type = "text", cla
                   onChange={(newColor) => handleColorChange(index, newColor)}
                 />
                 <div className={`color-value color-value${index}`}>
-                    Color: <span style={{ color: color, textShadow: '2px 2px 2px black', letterSpacing: '3px' }}>{color}</span>
+                    Color: <span className="colorPickerSpanSorting"style={{ color: color, textShadow: '2px 2px 2px black', letterSpacing: '3px' }}>{color}</span>
                 </div>
               </div>
             ))}
