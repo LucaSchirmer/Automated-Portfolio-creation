@@ -237,9 +237,7 @@ function addServices(title, text, fotoUrl){
 /**
  * @param {name of the client} name 
  * @param {fotoUrl of the client} fotoUrl 
- */
-
-// Perhaps adding a Photo?  
+ */ 
 function addClients(name, fotoUrl){
     const articleClients = document.querySelector(".articleClients");
     
