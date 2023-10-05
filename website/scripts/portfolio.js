@@ -1,92 +1,85 @@
 // Aquire data
-async function getData(projectNum, bool = false){
-
-    // Url Json file
+async function getData(projectNum, bool = false) {
+    // URL of the JSON file
     let dataJsonUrl = "../data.json";
 
-    const request =  await fetch(dataJsonUrl,);
+    const request = await fetch(dataJsonUrl);
     const response = await request.json();
 
-    var projectNumMax = 0;
+    // Access data using the new structure
+    const general = response.general;
+    const projects = response.projects;
+    const socialMedia = response.socialMedia;
+    const colors = response.colors;
 
-    addMetaDescription(response[0].metaDescription);
-    
-
-    document.querySelector(":root").style.setProperty("--mainColor", response[0].mainColor);
-    document.querySelector(":root").style.setProperty("--secondaryColor", response[0].secondaryColor);
-    document.querySelector(":root").style.setProperty("--accentColor", response[0].accentColor);
-    document.querySelector(":root").style.setProperty("--backgroundColor", response[0].backgroundColor);
-
-
-    let setLength = 10000;
-
-    for(let i = 0; i <= setLength; i++){
-         if(!response[1][i]){
-            projectNumMax = i-1; 
-            break;
-         }
-    }
+    const projectKeys = Object.keys(response.projects);
+    const projectNumMax = projectKeys.length -1;
+    console.log(`Total number of projects: ${projectNumMax}`);
 
 
+    addMetaDescription(general.metaDescription);
 
-    let projectArr = [];
-    if(projectNum > projectNumMax){
+    document.querySelector(".LogoContainer").firstElementChild.src = "img/" + general.logo;
+    document.querySelector(".LogoContainer").firstElementChild.alt = general.logo;
+
+    document.querySelector(":root").style.setProperty("--mainColor", colors.mainColor);
+    document.querySelector(":root").style.setProperty("--secondaryColor", colors.secondaryColor);
+    document.querySelector(":root").style.setProperty("--accentColor", colors.accentColor);
+    document.querySelector(":root").style.setProperty("--backgroundColor", colors.backgroundColor);
+
+    if (projectNum > projectNumMax) {
         projectNum = 0;
     }
-    
-    if(projectNum < 0){
+
+    if (projectNum < 0) {
         projectNum = projectNumMax;
     }
+
     var url = window.location.href;
     let arrayUrl = url.split("/");
 
-    arrayUrl[arrayUrl.length-1] = "";
+    arrayUrl[arrayUrl.length - 1] = "";
 
-    let newURL = arrayUrl.join("/")
+    let newURL = arrayUrl.join("/");
 
     let param = new URLSearchParams();
     param.append("project", projectNum);
 
-    if(bool == true){
-        window.location.href =  `${newURL}portfolio.html?${param}`; 
-    }
-    
-
-
-
-    for (const value of Object.values(response[1][projectNum])) {
-        projectArr.push(value)
+    if (bool == true) {
+        window.location.href = `${newURL}portfolio.html?${param}`;
     }
 
-    addProject(projectArr[0], projectArr[1], projectArr[2]);
-    document.title = projectArr[0];
+    const project = projects[projectNum];
+
+    addProject(project.title, project.text, project.foto);
+    document.title = project.title;
 
     // Adding Contacts
-    addMailNumberContacts(response[0].email, response[0].phoneNumber);
+    addMailNumberContacts(general.email, general.phoneNumber);
 
     // Adding Parent div for contacts
-    addContantDiv();
+    addContactDiv();
 
     let i = 0;
-    for (const [key, value] of Object.entries(response[4])) {
+    for (const [key, value] of Object.entries(socialMedia)) {
         i += 1;
-        addContact(key, value);
+        addContact(key.replace("URL", ""), value);
     }
 
     let contactContainer = document.querySelector(".contactContainer");
-    if(i % 3 == 0 || i > 7) {
+    if (i % 3 == 0 || i > 7) {
         contactContainer.style.gridTemplateColumns = "1fr 1fr 1fr";
-    }else{
+    } else {
         contactContainer.style.gridTemplateColumns = "1fr 1fr";
     }
-
 
     console.log(response);
 }
 
-var projectNum = window.location.search.replace("?project=", ""); 
+var projectNum = window.location.search.replace("?project=", "");
 
 getData(projectNum);
+
 
 /**
  * @param {title of the Portfolio} title 
@@ -101,7 +94,7 @@ function addProject(title, text, fotoUrl){
     const htmlString = 
     `
         <div class="headPicture">
-            <img src="${fotoUrl}"alt="${title}" id="${title.replace(" ", "_").replace("=", "_")}">
+            <img src="img/${fotoUrl}"alt="${title}" id="${title.replace(" ", "_").replace("=", "_")}">
         </div>
         <div class="bannerArticle">
             <h1 class="bannerHeadline">
@@ -151,7 +144,7 @@ function addContact(title, link){
     contactContainer.appendChild(contactDiv);
 }
 
-function addContantDiv(){
+function addContactDiv(){
     let contactDiv = document.createElement("div");
     contactDiv.classList.add("contactContainer");
 
