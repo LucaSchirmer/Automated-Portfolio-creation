@@ -19,8 +19,10 @@ async function getData(projectNum, bool = false) {
 
     addMetaDescription(general.metaDescription);
 
-    document.querySelector(".LogoContainer").firstElementChild.src = "img/" + general.logo;
-    document.querySelector(".LogoContainer").firstElementChild.alt = general.logo;
+    document.querySelectorAll(".LogoContainer").forEach((e) => {
+        e.firstElementChild.src = "img/" + general.logo;
+        e.firstElementChild.alt = general.logo;
+    });
 
     document.querySelector(":root").style.setProperty("--mainColor", colors.mainColor);
     document.querySelector(":root").style.setProperty("--secondaryColor", colors.secondaryColor);
