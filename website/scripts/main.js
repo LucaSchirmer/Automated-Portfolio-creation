@@ -41,7 +41,7 @@ async function getData() {
         for (const key in data.customers) {
             if (data.customers.hasOwnProperty(key)) {
                 const client = data.customers[key];
-                addClients(client.name, client.foto);
+                addClients(client.title, client.foto);
             }
         }
 
